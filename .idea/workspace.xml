@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game_Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/Window.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/inputs/KeyboardInputs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/inputs/MouseInputs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ressources/player_sprites.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Window ,GameLoop and Player">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +37,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/flori/Intellij-workspace/Game_Project/src/ressources",
+    "last_opened_file_path": "C:/Users/flori/Intellij-workspace/Tuto Jeu",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,11 +60,36 @@
       <option name="presentableId" value="Default" />
       <updated>1709982051355</updated>
       <workItem from="1709982052465" duration="1380000" />
-      <workItem from="1709994557767" duration="1728000" />
+      <workItem from="1709994557767" duration="2026000" />
+      <workItem from="1710689165804" duration="573000" />
+      <workItem from="1710783288517" duration="47000" />
+      <workItem from="1711098503135" duration="40000" />
+      <workItem from="1711374132252" duration="866000" />
+      <workItem from="1711462380773" duration="2398000" />
+      <workItem from="1711547819130" duration="1793000" />
     </task>
+    <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
+      <created>1709996357659</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709996357659</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Window ,GameLoop and Player">
+      <created>1709996573213</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709996573213</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Window ,GameLoop and Player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Window ,GameLoop and Player" />
   </component>
 </project>

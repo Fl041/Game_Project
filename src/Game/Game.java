@@ -1,8 +1,11 @@
 package Game;
 
 import Entities.Player;
+import Entities.Wall;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game implements  Runnable{
     private Window window;
@@ -13,13 +16,25 @@ public class Game implements  Runnable{
 
     private Player player ;
 
+    public final static int TILES_DEFAULT_SIZE = 32 ;
+    public final static float SCALE = 1.5f ;
+    public final static int TILES_IN_WIDTH = 26;
+    public final static int TILES_IN_HEIGHT = 14;
+    public final static  int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    public final  static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH ;
+    public final  static int GAME_HEIGHT = TILES_SIZE  * TILES_IN_HEIGHT;
+
+    private ArrayList<Wall> walls = new ArrayList<>();
+
 
     public Game(){
-        player = new Player(200,200);
+        player = new Player(200,200 , (int)SCALE*72 , (int)SCALE*58,walls);
         gamePanel = new GamePanel(this);
         window = new Window(gamePanel);
         gamePanel.requestFocus();
         startGameloop();
+        for(int i = 0 ; i<14 ; i++) walls.add(new Wall(i*TILES_IN_WIDTH,600,TILES_IN_WIDTH,TILES_IN_WIDTH));
+
     }
 
     public void update(){
@@ -28,6 +43,9 @@ public class Game implements  Runnable{
 
     public void render(Graphics g){
         player.render(g);
+        for(Wall wall : walls){
+            wall.render(g);
+        }
     }
 
     private void startGameloop(){
@@ -84,4 +102,5 @@ public class Game implements  Runnable{
     public Player getPlayer(){
         return  player;
     }
+
 }

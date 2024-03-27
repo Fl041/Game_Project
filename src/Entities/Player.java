@@ -5,8 +5,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import static Entities.Constants.PlayerConstants.*;
+import static Game.Game.GAME_WIDTH;
+import static Game.Game.SCALE;
 
 public class Player extends Entity{
 
@@ -17,9 +20,13 @@ public class Player extends Entity{
     private boolean moving = false , attacking = false;
     private boolean left , up , down , right ;
     private float playerSpeed = 2.0f ;
-    public Player(float x, float y) {
-        super(x, y);
+
+    private List<Wall> walls;
+    public Player(float x, float y , int width , int height, List<Wall> walls) {
+        super(x, y,width,height);
+        this.walls = walls;
         loadAnimations();
+        initHitbox(x+15, y+4, 36, 54);
     }
 
     public void update() {
@@ -29,7 +36,8 @@ public class Player extends Entity{
     }
 
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 256, 160, null);
+        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
+        drawHitbox(g);
     }
 
 
@@ -95,21 +103,26 @@ public class Player extends Entity{
     }
 
     private void updatePos() {
+
         moving = false;
 
         if (left && !right) {
             x -= playerSpeed;
+            hitbox.x =x+15 ;
             moving = true;
         } else if (right && !left) {
             x += playerSpeed;
+            hitbox.x =x+15 ;
             moving = true;
         }
 
         if (up && !down) {
             y -= playerSpeed;
+            hitbox.y =y+4 ;
             moving = true;
         } else if (down && !up) {
             y += playerSpeed;
+            hitbox.y =y+4 ;
             moving = true;
         }
     }
