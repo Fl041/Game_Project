@@ -6,6 +6,7 @@ import Entities.Wall;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game implements  Runnable{
     private Window window;
@@ -24,27 +25,92 @@ public class Game implements  Runnable{
     public final  static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH ;
     public final  static int GAME_HEIGHT = TILES_SIZE  * TILES_IN_HEIGHT;
 
-    private ArrayList<Wall> walls = new ArrayList<>();
+    public ArrayList<Wall> walls = new ArrayList<>();
+    public int CameraX;
+    public int offset;
 
 
     public Game(){
-        player = new Player(200,200 , (int)SCALE*72 , (int)SCALE*58,walls);
+        player = new Player(400,300 , 72,58,this);
         gamePanel = new GamePanel(this);
         window = new Window(gamePanel);
         gamePanel.requestFocus();
+        reset();
         startGameloop();
-        for(int i = 0 ; i<14 ; i++) walls.add(new Wall(i*TILES_IN_WIDTH,600,TILES_IN_WIDTH,TILES_IN_WIDTH));
 
     }
+
+    public void reset(){
+        player.setX(200);
+        player.setY(150);
+        CameraX = 150;
+        player.xspeed=0;
+        player.yspeed=0;
+        walls.clear();
+        offset = -150;
+        makeWall(offset);;
+    }
+
+    public  void makeWall(int offset){
+        int s  = 50;
+        Random rand = new Random();
+        int index = rand.nextInt(5);
+        if(index == 0 ){
+            for(int i = 0 ; i<14 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+        }
+        else if(index == 1 ){
+            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+            walls.add(new Wall(offset + 500,600,s,s));
+            walls.add(new Wall(offset + 550,600,s,s));
+            walls.add(new Wall(offset + 600,600,s,s));
+            walls.add(new Wall(offset + 650,600,s,s));
+            walls.add(new Wall(offset + 700,600,s,s));
+            walls.add(new Wall(offset + 750,600,s,s));
+        }
+        else if(index == 2 ){
+            for(int i = 0 ; i < 14 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+            for(int i = 0 ; i < 12 ; i++) walls.add(new Wall(offset+ 50 + i*50,550,s,s));
+            for(int i = 0 ; i < 10 ; i++) walls.add(new Wall(offset +100 + i*50,500,s,s));
+            for(int i = 0 ; i < 8 ; i++) walls.add(new Wall(offset + 150 +i*50,450,s,s));
+            for(int i = 0 ; i < 6 ; i++) walls.add(new Wall(offset +200+ i*50,400,s,s));
+
+        }
+        else if(index == 3 ){
+            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + 450 + i*50,600,s,s));
+
+            walls.add(new Wall(offset+ 150,550,s,s));
+            walls.add(new Wall(offset+ 200,550,s,s));
+            walls.add(new Wall(offset+ 200,500,s,s));
+
+            walls.add(new Wall(offset+ 200,450,s,s));
+            walls.add(new Wall(offset+ 500,550,s,s));
+            walls.add(new Wall(offset+ 450,550,s,s));
+
+            walls.add(new Wall(offset+ 450,500,s,s));
+            walls.add(new Wall(offset+ 450,450,s,s));
+        }
+
+        else {
+            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+            for(int i = 0 ; i < 4 ; i++) walls.add(new Wall(offset + 50 + i*50,550,s,s));
+            for(int i = 0 ; i < 3 ; i++) walls.add(new Wall(offset +100 + i*50,500,s,s));
+            for(int i = 0 ; i < 2 ; i++) walls.add(new Wall(offset +150 + i*50,450,s,s));
+            for(int i = 0 ; i < 4 ; i++) walls.add(new Wall(offset +500 + i*50,600,s,s));
+
+        }
+
+    }
+
 
     public void update(){
         player.update();
     }
 
     public void render(Graphics g){
-        player.render(g);
+        player.draw((Graphics2D) g);
         for(Wall wall : walls){
-            wall.render(g);
+            wall.draw((Graphics2D) g);
         }
     }
 
@@ -74,7 +140,17 @@ public class Game implements  Runnable{
             previousTime = currentTime;
 
             if (deltaU >= 1) {
+                if(walls.get(walls.size() -1).x <800){
+                    offset += 700 ;
+                    makeWall(offset);
+
+                }
                 update();
+                for (Wall wall : walls) wall.set(CameraX);
+
+                for (int i = 0; i < walls.size(); i++) {
+                    if (walls.get(i).x < -800) walls.remove(i);
+                }
                 updates++;
                 deltaU--;
             }

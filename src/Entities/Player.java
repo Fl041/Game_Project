@@ -1,5 +1,7 @@
 package Entities;
 
+import Game.Game;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,29 +19,25 @@ public class Player extends Entity{
     private int aniTick ,aniIndex;
     private final int aniSpeed = 25 ;
     private int playerAction = IDLE;
-    private boolean moving = false , attacking = false;
+    private boolean moving = false , attacking = false , inAir = false;
     private boolean left , up , down , right ;
-    private float playerSpeed = 2.0f ;
 
-    private List<Wall> walls;
-    public Player(float x, float y , int width , int height, List<Wall> walls) {
-        super(x, y,width,height);
-        this.walls = walls;
+    static Game game ;
+    public double xspeed;
+    public double yspeed;
+    public Player( int x , int y , int width,int height ,Game game){
+        super(x,y,width,height);
+        this.game = game;
+
         loadAnimations();
-        initHitbox(x+15, y+4, 36, 54);
+       initHitbox(x,y,width,height);
     }
 
     public void update() {
-        updatePos();
+        set();
         updateAnimationTick();
         setAnimation();
     }
-
-    public void render(Graphics g) {
-        g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
-        drawHitbox(g);
-    }
-
 
     private void loadAnimations() {
         InputStream is = getClass().getResourceAsStream("/ressources/player_sprites.png");
@@ -81,7 +79,6 @@ public class Player extends Entity{
 
     }
 
-
     private void setAnimation() {
         int startAni = playerAction;
 
@@ -89,6 +86,10 @@ public class Player extends Entity{
             playerAction = RUN;
         else
             playerAction = IDLE;
+        if(inAir){
+            if(yspeed < 0) playerAction = JUMP_2;
+            else playerAction = FALL;
+        }
 
         if (attacking)
             playerAction = ATTACK_1;
@@ -102,31 +103,84 @@ public class Player extends Entity{
         aniIndex = 0;
     }
 
-    private void updatePos() {
-
+    public void set(){
         moving = false;
+        if(left && right || !left && !right) xspeed *= 0.8 ;
+        else if(left && !right) {
+            xspeed --;
+            moving  = true ;
+        }
+        else if(right && !left){
+            xspeed ++;
+            moving  = true ;
 
-        if (left && !right) {
-            x -= playerSpeed;
-            hitbox.x =x+15 ;
-            moving = true;
-        } else if (right && !left) {
-            x += playerSpeed;
-            hitbox.x =x+15 ;
-            moving = true;
         }
 
-        if (up && !down) {
-            y -= playerSpeed;
-            hitbox.y =y+4 ;
-            moving = true;
-        } else if (down && !up) {
-            y += playerSpeed;
-            hitbox.y =y+4 ;
-            moving = true;
+        if(xspeed > 0 && xspeed < 0.75) xspeed = 0 ;
+        if(xspeed < 0 && xspeed > -0.75) xspeed = 0 ;
+
+        if(xspeed > 7) xspeed = 7 ;
+        if(xspeed < -7) xspeed = -7 ;
+
+        if(up){
+            inAir = true;
+            hitbox.y ++ ;
+            for(Wall wall: game.walls){
+                if(wall.hitbox.intersects(hitbox)){
+                    yspeed = -6 ;
+                }
+            }
+            hitbox.y--;
         }
+
+        yspeed += 0.3;
+        //Horizontal Collision
+        hitbox.x += xspeed;
+        for(Wall wall : game.walls){
+            if(hitbox.intersects(wall.hitbox)){
+                hitbox.x -= xspeed;
+                while ( !wall.hitbox.intersects(hitbox)){
+                    hitbox.x += Math.signum(xspeed);
+                }
+                hitbox.x -= Math.signum(xspeed);
+                game.CameraX += x- hitbox.x;
+                xspeed = 0 ;
+                hitbox.x = x ;
+            }
+        }
+        //Vertical Collision
+        hitbox.y += yspeed;
+        for(Wall wall : game.walls){
+            if(hitbox.intersects(wall.hitbox)){
+                hitbox.y -= yspeed;
+                while ( !wall.hitbox.intersects(hitbox)){
+                    hitbox.y += Math.signum(yspeed);
+                }
+                hitbox.y -= Math.signum(yspeed);
+                inAir = false;
+                yspeed = 0 ;
+                y= (int) hitbox.y;
+            }
+        }
+
+        game.CameraX -= xspeed;
+        y += yspeed;
+
+        hitbox.x = x;
+        hitbox.y = y;
+
+        //Death Code
+        if(y > 800) game.reset();
+
     }
 
+    public void draw(Graphics2D gtd){
+        gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
+        gtd.setColor(Color.BLACK);
+        drawHitbox(gtd);
+       /* Font f =new Font("Arial" , Font.BOLD , 40);
+        gtd.drawString(Integer.toString(x) , 100 , 100);*/
+    }
     public void resetDirBooleans() {
         left = false;
         right = false;

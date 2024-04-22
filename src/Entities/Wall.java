@@ -2,18 +2,36 @@ package Entities;
 
 import java.awt.*;
 
-public class Wall extends Entity{
+public class Wall {
 
-    public Wall(float x, float y, int width, int height) {
-        super(x, y, width, height);
-        initHitbox((int)x,(int)y,width,height);
+    public int x;
+    int y;
+    int width;
+    int height ;
+    Rectangle hitbox ;
+
+    int startX;
+
+    public Wall(int x ,int y ,int width ,int height){
+        this.x = x ;
+        startX = x ;
+        this.y = y ;
+        this.width = width;
+        this.height = height;
+
+        hitbox = new Rectangle(x,y,width,height);
     }
 
-    public void render(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.drawRect((int)x,(int)y,width,height);
-        g.setColor(Color.WHITE);
-        g.fillRect((int)x+1,(int) y+1,width-2,height-2);
+    public int set(int CameraX){
+        x = startX + CameraX;
+        hitbox.x = x ;
 
+        return x;
+    }
+    public void draw(Graphics2D gtd){
+        gtd.setColor(Color.BLACK);
+        gtd.drawRect(x,y,width,height);
+        gtd.setColor(Color.WHITE);
+        gtd.fillRect(x+1,y+1,width-2,height-2);
     }
 }
