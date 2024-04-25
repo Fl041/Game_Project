@@ -1,5 +1,6 @@
 package Game;
 
+import Entities.ListWall;
 import Entities.Player;
 import Entities.Wall;
 
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Game implements  Runnable{
     private Window window;
@@ -25,7 +27,7 @@ public class Game implements  Runnable{
     public final  static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH ;
     public final  static int GAME_HEIGHT = TILES_SIZE  * TILES_IN_HEIGHT;
 
-    public ArrayList<Wall> walls = new ArrayList<>();
+    public ListWall<Wall> walls = new ListWall<>(150);
     public int CameraX;
     public int offset;
 
@@ -54,50 +56,97 @@ public class Game implements  Runnable{
     public  void makeWall(int offset){
         int s  = 50;
         Random rand = new Random();
-        int index = rand.nextInt(5);
+        int index = rand.nextInt(8);
         if(index == 0 ){
-            for(int i = 0 ; i<14 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
+            for(int i = 0 ; i<14 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
         }
         else if(index == 1 ){
-            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
-            walls.add(new Wall(offset + 500,600,s,s));
-            walls.add(new Wall(offset + 550,600,s,s));
-            walls.add(new Wall(offset + 600,600,s,s));
-            walls.add(new Wall(offset + 650,600,s,s));
-            walls.add(new Wall(offset + 700,600,s,s));
-            walls.add(new Wall(offset + 750,600,s,s));
+            for(int i = 0 ; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 6 ; i < 10 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 12 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+
         }
         else if(index == 2 ){
-            for(int i = 0 ; i < 14 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
-            for(int i = 0 ; i < 12 ; i++) walls.add(new Wall(offset+ 50 + i*50,550,s,s));
-            for(int i = 0 ; i < 10 ; i++) walls.add(new Wall(offset +100 + i*50,500,s,s));
-            for(int i = 0 ; i < 8 ; i++) walls.add(new Wall(offset + 150 +i*50,450,s,s));
-            for(int i = 0 ; i < 6 ; i++) walls.add(new Wall(offset +200+ i*50,400,s,s));
+            for(int i = 0 ; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 6 ; i < 10 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 12 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,500,s,s));
+            }
 
         }
         else if(index == 3 ){
-            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
-            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + 450 + i*50,600,s,s));
-
-            walls.add(new Wall(offset+ 150,550,s,s));
-            walls.add(new Wall(offset+ 200,550,s,s));
-            walls.add(new Wall(offset+ 200,500,s,s));
-
-            walls.add(new Wall(offset+ 200,450,s,s));
-            walls.add(new Wall(offset+ 500,550,s,s));
-            walls.add(new Wall(offset+ 450,550,s,s));
-
-            walls.add(new Wall(offset+ 450,500,s,s));
-            walls.add(new Wall(offset+ 450,450,s,s));
+            for(int i = 0 ; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 6 ; i < 10 ; i++){
+                walls.add(new Wall(offset + i*50,650,s,s));
+            }
+            for(int i = 12 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
         }
+        else if(index == 4 ){
+            for(int i = 0 ; i < 12 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 4 ; i < 12 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 8 ; i < 12 ; i++){
+                walls.add(new Wall(offset + i*50,500,s,s));
+            }
+        }
+        else if(index == 5 ){
+            for(int i = 0 ; i < 12 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 0 ; i < 8 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 0; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,500,s,s));
+            }
+        }
+        else if(index == 6 ){
+            for(int i = 0 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 0 ; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 12 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,550,s,s));
+            }
+            for(int i = 0 ; i < 2 ; i++){
+                walls.add(new Wall(offset + i*50,500,s,s));
+            }
+            for(int i = 14 ; i < 16 ; i++){
+                walls.add(new Wall(offset + i*50,500,s,s));
+            }
 
+        }
         else {
-            for(int i = 0 ; i < 5 ; i++) walls.add(new Wall(offset + i*50,600,s,s));
-            for(int i = 0 ; i < 4 ; i++) walls.add(new Wall(offset + 50 + i*50,550,s,s));
-            for(int i = 0 ; i < 3 ; i++) walls.add(new Wall(offset +100 + i*50,500,s,s));
-            for(int i = 0 ; i < 2 ; i++) walls.add(new Wall(offset +150 + i*50,450,s,s));
-            for(int i = 0 ; i < 4 ; i++) walls.add(new Wall(offset +500 + i*50,600,s,s));
-
+            for(int i = 0 ; i < 4 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 6 ; i < 10 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
+            for(int i = 12 ; i <16 ; i++){
+                walls.add(new Wall(offset + i*50,600,s,s));
+            }
         }
 
     }
@@ -140,21 +189,20 @@ public class Game implements  Runnable{
             previousTime = currentTime;
 
             if (deltaU >= 1) {
-                if(walls.get(walls.size() -1).x <800){
-                    offset += 700 ;
+                if(walls.get(walls.size() -1).getX() <800){
+                    offset += 800 ;
                     makeWall(offset);
 
                 }
                 update();
                 for (Wall wall : walls) wall.set(CameraX);
 
-                for (int i = 0; i < walls.size(); i++) {
-                    if (walls.get(i).x < -800) walls.remove(i);
-                }
+               /* for (int i = 0; i < walls.size(); i++) {
+                    if (walls.get(i).getX() < -800) walls.remove(i);
+                }*/
                 updates++;
                 deltaU--;
             }
-
             if (deltaF >= 1) {
                 gamePanel.repaint();
                 frames++;

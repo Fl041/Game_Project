@@ -10,7 +10,7 @@ import static Game.Game.*;
 
 public class GamePanel extends JPanel {
 
-    private Game game ;
+    private final Game game ;
 
     private MouseInputs mouseInputs ;
     private KeyboardInputs keyboardInputs;

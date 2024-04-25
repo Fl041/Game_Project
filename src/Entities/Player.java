@@ -119,15 +119,15 @@ public class Player extends Entity{
         if(xspeed > 0 && xspeed < 0.75) xspeed = 0 ;
         if(xspeed < 0 && xspeed > -0.75) xspeed = 0 ;
 
-        if(xspeed > 7) xspeed = 7 ;
-        if(xspeed < -7) xspeed = -7 ;
+        if(xspeed > 4.5) xspeed = 4.5 ;
+        if(xspeed < -4.5) xspeed = -4.5 ;
 
         if(up){
             inAir = true;
             hitbox.y ++ ;
             for(Wall wall: game.walls){
                 if(wall.hitbox.intersects(hitbox)){
-                    yspeed = -6 ;
+                    yspeed = -7 ;
                 }
             }
             hitbox.y--;
@@ -137,9 +137,9 @@ public class Player extends Entity{
         //Horizontal Collision
         hitbox.x += xspeed;
         for(Wall wall : game.walls){
-            if(hitbox.intersects(wall.hitbox)){
+            if(hitbox.intersects(wall.getHitbox())){
                 hitbox.x -= xspeed;
-                while ( !wall.hitbox.intersects(hitbox)){
+                while ( !wall.getHitbox().intersects(hitbox)){
                     hitbox.x += Math.signum(xspeed);
                 }
                 hitbox.x -= Math.signum(xspeed);
@@ -151,9 +151,9 @@ public class Player extends Entity{
         //Vertical Collision
         hitbox.y += yspeed;
         for(Wall wall : game.walls){
-            if(hitbox.intersects(wall.hitbox)){
+            if(hitbox.intersects(wall.getHitbox())){
                 hitbox.y -= yspeed;
-                while ( !wall.hitbox.intersects(hitbox)){
+                while ( !wall.getHitbox().intersects(hitbox)){
                     hitbox.y += Math.signum(yspeed);
                 }
                 hitbox.y -= Math.signum(yspeed);
@@ -177,7 +177,7 @@ public class Player extends Entity{
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
         gtd.setColor(Color.BLACK);
-        drawHitbox(gtd);
+        //drawHitbox(gtd);
        /* Font f =new Font("Arial" , Font.BOLD , 40);
         gtd.drawString(Integer.toString(x) , 100 , 100);*/
     }

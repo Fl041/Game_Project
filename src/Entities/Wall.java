@@ -1,37 +1,51 @@
 package Entities;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class Wall {
+public class Wall extends Entity{
 
-    public int x;
-    int y;
-    int width;
-    int height ;
-    Rectangle hitbox ;
-
-    int startX;
+    public int startX;
+    private BufferedImage texture;
 
     public Wall(int x ,int y ,int width ,int height){
-        this.x = x ;
+        super(x,y,width,height);
         startX = x ;
-        this.y = y ;
-        this.width = width;
-        this.height = height;
-
-        hitbox = new Rectangle(x,y,width,height);
+        loadTexture();
+        initHitbox(x,y,width,height);
     }
 
     public int set(int CameraX){
         x = startX + CameraX;
-        hitbox.x = x ;
+        getHitbox().x = (int) x;
 
-        return x;
+        return (int) x;
+    }
+
+    private void loadTexture() {
+        InputStream is = getClass().getResourceAsStream("/ressources/outside_sprites.png");
+        try {
+            BufferedImage img = ImageIO.read(is);
+            texture = img.getSubimage(27,0 , 46, 46);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public void draw(Graphics2D gtd){
-        gtd.setColor(Color.BLACK);
-        gtd.drawRect(x,y,width,height);
-        gtd.setColor(Color.WHITE);
-        gtd.fillRect(x+1,y+1,width-2,height-2);
+        gtd.drawImage( texture, (int) x, (int) y,getWidth(),getHeight(),null);
+        /*gtd.setColor(Color.BLACK);
+        gtd.drawRect((int) x, (int) y,width,height);
+        gtd.setColor(Color.WHITE);*/
     }
 }
