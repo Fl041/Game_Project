@@ -9,12 +9,14 @@ import java.io.InputStream;
 public class Wall extends Entity{
 
     public int startX;
+    private final int width = 50;
+    private final int height = 50;
     private BufferedImage texture;
 
-    public Wall(int x ,int y ,int width ,int height){
+    public Wall(int x ,int y ,int width ,int height,int numtexture){
         super(x,y,width,height);
         startX = x ;
-        loadTexture();
+        loadTexture(numtexture);
         initHitbox(x,y,width,height);
     }
 
@@ -25,12 +27,13 @@ public class Wall extends Entity{
         return (int) x;
     }
 
-    private void loadTexture() {
+    private void loadTexture(int numtexture) {
         InputStream is = getClass().getResourceAsStream("/ressources/outside_sprites.png");
         try {
             BufferedImage img = ImageIO.read(is);
+            if(numtexture == 0 )
             texture = img.getSubimage(27,0 , 46, 46);
-
+            else texture = img.getSubimage(26,22 , 47, 47);
 
         } catch (IOException e) {
             e.printStackTrace();

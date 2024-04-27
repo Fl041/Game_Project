@@ -1,6 +1,7 @@
 package inputs;
 
 import Game.GamePanel;
+import gamestates.Gamestate;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,9 +15,17 @@ public class MouseInputs implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1);
-           gamePanel.getGame().getPlayer().setAttacking(true);
+        switch (Gamestate.state) {
+            case MENU:
+                gamePanel.getGame().getMenu().mouseClicked(e);
+                break;
+            case PLAYING:
+                gamePanel.getGame().getPlaying().mouseClicked(e);
+                break;
+            default:
+                break;
 
+        }
     }
 
     @Override

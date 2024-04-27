@@ -1,6 +1,7 @@
 package Entities;
 
 import Game.Game;
+import gamestates.Playing;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,8 +11,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import static Entities.Constants.PlayerConstants.*;
-import static Game.Game.GAME_WIDTH;
-import static Game.Game.SCALE;
 
 public class Player extends Entity{
 
@@ -22,10 +21,10 @@ public class Player extends Entity{
     private boolean moving = false , attacking = false , inAir = false;
     private boolean left , up , down , right ;
 
-    static Game game ;
+    static Playing game ;
     public double xspeed;
     public double yspeed;
-    public Player( int x , int y , int width,int height ,Game game){
+    public Player(int x , int y , int width, int height , Playing game){
         super(x,y,width,height);
         this.game = game;
 
@@ -119,15 +118,15 @@ public class Player extends Entity{
         if(xspeed > 0 && xspeed < 0.75) xspeed = 0 ;
         if(xspeed < 0 && xspeed > -0.75) xspeed = 0 ;
 
-        if(xspeed > 4.5) xspeed = 4.5 ;
-        if(xspeed < -4.5) xspeed = -4.5 ;
+        if(xspeed > 4) xspeed = 4 ;
+        if(xspeed < -4) xspeed = -4 ;
 
         if(up){
             inAir = true;
             hitbox.y ++ ;
-            for(Wall wall: game.walls){
+            for(Wall wall: game.getWalls()){
                 if(wall.hitbox.intersects(hitbox)){
-                    yspeed = -7 ;
+                    yspeed = -7.5 ;
                 }
             }
             hitbox.y--;
@@ -136,7 +135,7 @@ public class Player extends Entity{
         yspeed += 0.3;
         //Horizontal Collision
         hitbox.x += xspeed;
-        for(Wall wall : game.walls){
+        for(Wall wall : game.getWalls()){
             if(hitbox.intersects(wall.getHitbox())){
                 hitbox.x -= xspeed;
                 while ( !wall.getHitbox().intersects(hitbox)){
@@ -150,7 +149,7 @@ public class Player extends Entity{
         }
         //Vertical Collision
         hitbox.y += yspeed;
-        for(Wall wall : game.walls){
+        for(Wall wall : game.getWalls()){
             if(hitbox.intersects(wall.getHitbox())){
                 hitbox.y -= yspeed;
                 while ( !wall.getHitbox().intersects(hitbox)){
@@ -163,7 +162,7 @@ public class Player extends Entity{
             }
         }
 
-        game.CameraX -= xspeed;
+        game.CameraX-= xspeed;
         y += yspeed;
 
         hitbox.x = x;
