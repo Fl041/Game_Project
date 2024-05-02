@@ -176,9 +176,7 @@ public class Player extends Entity{
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
         gtd.setColor(Color.BLACK);
-        //drawHitbox(gtd);
-       /* Font f =new Font("Arial" , Font.BOLD , 40);
-        gtd.drawString(Integer.toString(x) , 100 , 100);*/
+
     }
     public void resetDirBooleans() {
         left = false;

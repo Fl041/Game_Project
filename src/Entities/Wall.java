@@ -9,13 +9,14 @@ import java.io.InputStream;
 public class Wall extends Entity{
 
     public int startX;
-    private final int width = 50;
-    private final int height = 50;
     private BufferedImage texture;
 
-    public Wall(int x ,int y ,int width ,int height,int numtexture){
-        super(x,y,width,height);
+    private int numtexture ;
+
+    public Wall(int x ,int y ,int numtexture){
+        super(x,y,50,50);
         startX = x ;
+        this.numtexture = numtexture;
         loadTexture(numtexture);
         initHitbox(x,y,width,height);
     }
@@ -50,5 +51,9 @@ public class Wall extends Entity{
         /*gtd.setColor(Color.BLACK);
         gtd.drawRect((int) x, (int) y,width,height);
         gtd.setColor(Color.WHITE);*/
+    }
+
+    public int getNumtexture(){
+        return numtexture;
     }
 }
