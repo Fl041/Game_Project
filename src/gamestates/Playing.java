@@ -36,6 +36,8 @@ public class Playing extends State implements Statemethods {
 		CameraX = 150;
 		player.xspeed=0;
 		player.yspeed=0;
+		player.nbleft=0;
+		player.score = 0;
 		walls.clear();
 		offset = -150;
 		indiceWall = 1 ;
@@ -46,20 +48,21 @@ public class Playing extends State implements Statemethods {
 	public  void makeWall(int offset,int indiceWall){
 		Random rand = new Random();
 		int index = rand.nextInt(indiceWall);
+		//System.out.println("generation of wall");
 		if(index == 0 ){
 			make_straight_line(offset);
 			setIndiceWall(6);
 		}
 		else if(index == 1 ){
-			make_platforme2(offset);
+			make_platform2(offset);
 			setIndiceWall(6);
 		}
 		else if(index == 2 ){
-			make_platforme1(offset);
+			make_platform1(offset);
 			setIndiceWall(8);
 		}
 		else if(index == 3 ){
-			make_platforme3(offset);
+			make_platform3(offset);
 			setIndiceWall(6);
 		}
 		else if(index == 4 ){
@@ -100,7 +103,7 @@ public class Playing extends State implements Statemethods {
 		}
 		Font f =new Font(null , Font.BOLD , 20);
 		g.setFont(f);
-		g.drawString("Score : " + score,550,50);
+		g.drawString("Score : " + player.score,550,50);
 	}
 
 	@Override
@@ -176,7 +179,6 @@ public class Playing extends State implements Statemethods {
 	public void setIndiceWall(int indiceWall) {
 		this.indiceWall = indiceWall;
 	}
-
 	public void make_straight_line(int offset){
 		for(int i = 0 ; i<14 ; i++){
 			walls.add(new Wall(offset + i*50,500,0));
@@ -205,7 +207,7 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,650,1));
 		}
 	}
-	public void make_platforme1(int offset){
+	public void make_platform1(int offset){
 		for(int i = 0 ; i < 4 ; i++){
 			walls.add(new Wall(offset + i*50,500,0));
 		}
@@ -213,10 +215,11 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,450,0));
 		}
 		for(int i = 12 ; i < 16 ; i++){
+
 			walls.add(new Wall(offset + i*50,400,0));
 		}
 	}
-	public void make_platforme2(int offset){
+	public void make_platform2(int offset){
 		for(int i = 0 ; i < 4 ; i++){
 			walls.add(new Wall(offset + i*50,500,0));
 		}
@@ -227,8 +230,7 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,500,0));
 		}
 	}
-
-	public void make_platforme3(int offset){
+	public void make_platform3(int offset){
 		for(int i = 0 ; i < 4 ; i++){
 			walls.add(new Wall(offset + i*50,500,0));
 		}
@@ -239,7 +241,6 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,500,0));
 		}
 	}
-
 	public void make_ascension(int offset){
 		for(int i = 0 ; i < 12 ; i++){
 			walls.add(new Wall(offset + i*50,650,1));
@@ -257,7 +258,6 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,400,0));
 		}
 	}
-
 	public void make_descent(int offset){
 		for(int i = 0 ; i < 12 ; i++){
 			walls.add(new Wall(offset + i*50,650,1));
@@ -275,7 +275,6 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,400,0));
 		}
 	}
-
 	public void make_hollow(int offset){
 		for(int i = 0 ; i < 16 ; i++){
 			walls.add(new Wall(offset + i*50,650,1));

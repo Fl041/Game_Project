@@ -24,10 +24,14 @@ public class Player extends Entity{
     static Playing game ;
     public double xspeed;
     public double yspeed;
+
+    public int score;
+    public int nbleft;
     public Player(int x , int y , int width, int height , Playing game){
         super(x,y,width,height);
         this.game = game;
-
+        this.score = 0;
+        this.nbleft = 0 ;
         loadAnimations();
        initHitbox(x,y,width,height);
     }
@@ -108,11 +112,13 @@ public class Player extends Entity{
         else if(left && !right) {
             xspeed --;
             moving  = true ;
+            nbleft--;
         }
         else if(right && !left){
             xspeed ++;
             moving  = true ;
-
+            if(nbleft >= 0) score++;
+            else nbleft++;
         }
 
         if(xspeed > 0 && xspeed < 0.75) xspeed = 0 ;
@@ -132,7 +138,7 @@ public class Player extends Entity{
             hitbox.y--;
         }
 
-        yspeed += 0.3;
+        yspeed += 0.25;
         //Horizontal Collision
         hitbox.x += xspeed;
         for(Wall wall : game.getWalls()){
@@ -145,6 +151,7 @@ public class Player extends Entity{
                 game.CameraX += x- hitbox.x;
                 xspeed = 0 ;
                 hitbox.x = x ;
+                nbleft = -1;
             }
         }
         //Vertical Collision

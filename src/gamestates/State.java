@@ -2,6 +2,8 @@ package gamestates;
 
 import Game.Game;
 
+import java.awt.event.MouseEvent;
+
 public class State {
 
 	protected Game game;
@@ -12,5 +14,8 @@ public class State {
 
 	public Game getGame() {
 		return game;
+	}
+	public boolean isIn(MouseEvent e, Buttons b) {
+		return b.getBounds().contains(e.getX(), e.getY());
 	}
 }
