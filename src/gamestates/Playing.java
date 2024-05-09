@@ -12,11 +12,11 @@ import java.util.Random;
 
 public class Playing extends State implements Statemethods {
 	private Player player;
+	private Buttons buttons;
 	private ListWall<Wall> walls = new ListWall<>(400);
 	public int CameraX;
 	private int offset;
 	private int indiceWall;
-	private int score ;
 
 	public Playing(Game game) {
 		super(game);
@@ -26,6 +26,7 @@ public class Playing extends State implements Statemethods {
 
 	private void initClasses() {
 		player = new Player(400,300 , 72,58,this);
+		buttons = new Buttons(50,23,100,27,7,0,Gamestate.MENU);
 		reset();
 
 	}
@@ -42,7 +43,12 @@ public class Playing extends State implements Statemethods {
 		offset = -150;
 		indiceWall = 1 ;
 		makeWall(offset,indiceWall);
-		score = 0 ;
+	}
+	public void deathScene(){
+		player.setX(200);
+		player.setY(300);
+		player.xspeed=0;
+		player.yspeed=0;
 	}
 
 	public  void makeWall(int offset,int indiceWall){
@@ -85,25 +91,38 @@ public class Playing extends State implements Statemethods {
 	}
 	@Override
 	public void update() {
-		if(walls.get(walls.size() -1).getX() <800){
-			offset += 800 ;
-			makeWall(offset,indiceWall);
+		if(player.isalive()){
+			if(walls.get(walls.size() -1).getX() <800){
+				offset += 800 ;
+				makeWall(offset,indiceWall);
+			}
+			player.update();
+			buttons.update();
+			for (Wall wall : walls) {
+				wall.set(CameraX);
+			}
 		}
-		player.update();
-		for (Wall wall : walls) {
-			wall.set(CameraX);
+		else {
+			player.update();
 		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		player.draw((Graphics2D) g);
-		for(Wall wall : walls){
-			wall.draw((Graphics2D) g);
+		if(player.isalive()) {
+			player.draw((Graphics2D) g);
+			buttons.draw(g);
+			for(Wall wall : walls){
+				wall.draw((Graphics2D) g);
+			}
+			Font f =new Font(null , Font.BOLD , 20);
+			g.setFont(f);
+			g.drawString("Score : " + player.score,550,50);
 		}
-		Font f =new Font(null , Font.BOLD , 20);
-		g.setFont(f);
-		g.drawString("Score : " + player.score,550,50);
+		else{
+			player.draw((Graphics2D) g);
+			buttons.draw(g);
+		}
 	}
 
 	@Override
@@ -149,19 +168,29 @@ public class Playing extends State implements Statemethods {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if (isIn(e, buttons)) {
+			buttons.setMousePressed(true);
+		}
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		if (isIn(e, buttons)) {
+			if (buttons.isMousePressed())
+				buttons.applyGamestate();
+		}
+		buttons.resetBools();
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		buttons.setMouseOver(false);
+			if (isIn(e, buttons)) {
+				buttons.setMouseOver(true);
+			}
 	}
 
 	public void windowFocusLost() {
@@ -172,6 +201,9 @@ public class Playing extends State implements Statemethods {
 		return player;
 	}
 
+	public void setGameState(Gamestate state){
+		Gamestate.state = state;
+	}
 	public ListWall<Wall> getWalls() {
 		return walls;
 	}

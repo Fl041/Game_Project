@@ -38,7 +38,7 @@ public class Buttons {
 
     private void loadImgs() {
         imgs = new BufferedImage[10][3];
-        InputStream is = getClass().getResourceAsStream("/ressources/bouton.png");
+        InputStream is = getClass().getResourceAsStream("/ressources/button.png");
         try {
             BufferedImage img = ImageIO.read(is);
             int x = 56 ;

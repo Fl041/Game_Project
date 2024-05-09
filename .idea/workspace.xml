@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="platform generation finish">
-      <change afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ressources/bouton.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Game state and Menu">
+      <change afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ressources/button.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Gamestate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Gamestate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inputs/MouseInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/MouseInputs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +119,11 @@
       <workItem from="1714982552096" duration="1591000" />
       <workItem from="1714985884337" duration="139000" />
       <workItem from="1714989364746" duration="268000" />
-      <workItem from="1715174158298" duration="727000" />
+      <workItem from="1715174158298" duration="2046000" />
+      <workItem from="1715187853417" duration="144000" />
+      <workItem from="1715245135386" duration="1192000" />
+      <workItem from="1715246388487" duration="679000" />
+      <workItem from="1715260428997" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -171,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714659765531</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Game state and Menu">
+      <created>1715175101329</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715175101329</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +194,8 @@
     <MESSAGE value="improvement of wall generation and movement" />
     <MESSAGE value="First part of gamestate and improve texture" />
     <MESSAGE value="platform generation finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="platform generation finish" />
+    <MESSAGE value="Game state and Menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game state and Menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

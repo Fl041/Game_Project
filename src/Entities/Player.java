@@ -1,6 +1,7 @@
 package Entities;
 
 import Game.Game;
+import gamestates.Gamestate;
 import gamestates.Playing;
 
 import javax.imageio.ImageIO;
@@ -18,7 +19,7 @@ public class Player extends Entity{
     private int aniTick ,aniIndex;
     private final int aniSpeed = 25 ;
     private int playerAction = IDLE;
-    private boolean moving = false , attacking = false , inAir = false;
+    private boolean moving = false , attacking = false , inAir = false, isdead = false;
     private boolean left , up , down , right ;
 
     static Playing game ;
@@ -37,9 +38,15 @@ public class Player extends Entity{
     }
 
     public void update() {
-        set();
-        updateAnimationTick();
-        setAnimation();
+        if(isalive()){
+            set();
+            updateAnimationTick();
+            setAnimation();
+        }
+        else {
+            updateAnimationTick();
+            setAnimation();
+        }
     }
 
     private void loadAnimations() {
@@ -74,8 +81,14 @@ public class Player extends Entity{
             aniTick = 0;
             aniIndex++;
             if (aniIndex >= GetSpriteAmount(playerAction)) {
-                aniIndex = 0;
+                if(playerAction == DEATH ){
+                    game.setGameState(Gamestate.DEATH);
+                }
+                else {
+                    aniIndex = 0;
+                }
                 attacking = false;
+
             }
 
         }
@@ -87,6 +100,9 @@ public class Player extends Entity{
 
         if (moving)
             playerAction = RUN;
+        else if (isdead){
+            playerAction = DEATH;
+        }
         else
             playerAction = IDLE;
         if(inAir){
@@ -176,7 +192,11 @@ public class Player extends Entity{
         hitbox.y = y;
 
         //Death Code
-        if(y > 800) game.reset();
+        if(y > 800) {
+            isdead = true;
+            //game.setGameState(Gamestate.DEATH);
+            game.deathScene();
+        }
 
     }
 
@@ -226,6 +246,10 @@ public class Player extends Entity{
 
     public void setDown(boolean down) {
         this.down = down;
+    }
+
+    public boolean isalive(){
+        return !isdead;
     }
 
 }

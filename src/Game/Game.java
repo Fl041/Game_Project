@@ -3,6 +3,7 @@ package Game;
 import Entities.ListWall;
 import Entities.Player;
 import Entities.Wall;
+import gamestates.DeathScene;
 import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Menu.*;
@@ -20,6 +21,7 @@ public class Game implements  Runnable{
     private final int UPS = 200;
     private Playing playing;
     private Menu menu;
+    private DeathScene deathScene;
 
 
 
@@ -36,6 +38,7 @@ public class Game implements  Runnable{
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
+        deathScene = new DeathScene(this);
     }
 
 
@@ -47,6 +50,9 @@ public class Game implements  Runnable{
                 break;
             case PLAYING:
                 playing.update();
+                break;
+            case DEATH:
+                deathScene.update();
                 break;
             default:
                 break;
@@ -63,6 +69,8 @@ public class Game implements  Runnable{
             case PLAYING:
                 playing.draw(g);
                 break;
+            case DEATH:
+                deathScene.draw(g);
             default:
                 break;
         }
