@@ -16,13 +16,13 @@ public class Menu extends State implements Statemethods {
 	}
 
 	public void loadButtons(){
-		buttons[0] = new Buttons(200,250,300,81,0,0,Gamestate.PLAYING);
-		buttons[1] = new Buttons(200,400,300,81,7,0,Gamestate.QUIT);
+		buttons[0] = new Buttons(200,250,300,81,0,0,Gamestate.MENU,Gamestate.PLAYING,this.game);
+		buttons[1] = new Buttons(200,400,300,81,7,0,Gamestate.MENU,Gamestate.QUIT,this.game);
 	}
 	@Override
 	public void update() {
-		for (Buttons mb : buttons)
-			mb.update();
+		for (Buttons b : buttons)
+			b.update();
 	}
 
 	@Override
@@ -88,10 +88,11 @@ public class Menu extends State implements Statemethods {
 		// TODO Auto-generated method stub
 
 	}
-	private void resetButtons() {
+
+	@Override
+	public void resetButtons() {
 		for (Buttons b : buttons)
 			b.resetBools();
-
 	}
 
 

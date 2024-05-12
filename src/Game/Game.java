@@ -19,6 +19,7 @@ public class Game implements  Runnable{
     private Thread gameThread;
     private final int FPS = 120;
     private final int UPS = 200;
+    private int best_score = 0 ;
     private Playing playing;
     private Menu menu;
     private DeathScene deathScene;
@@ -35,7 +36,7 @@ public class Game implements  Runnable{
 
     }
 
-    private void initClasses() {
+    public void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
         deathScene = new DeathScene(this);
@@ -128,5 +129,15 @@ public class Game implements  Runnable{
 
     public Playing getPlaying() {
         return playing;
+    }
+
+    public DeathScene getDeathScene(){
+        return deathScene;
+    }
+    public int getBest_score() {
+        return best_score;
+    }
+    public void setBest_score(int best_score) {
+        this.best_score = best_score;
     }
 }

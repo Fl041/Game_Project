@@ -1,5 +1,6 @@
 package gamestates;
 
+import Game.Game;
 import gamestates.Gamestate;
 
 import javax.imageio.ImageIO;
@@ -15,19 +16,22 @@ public class Buttons {
     private int width, height ;
     private int xOffsetCenter = width/2;
 
-    private Gamestate state;
+    private Gamestate actualState,newState;
     private BufferedImage[][] imgs;
     private boolean mouseOver, mousePressed;
+    private Game game;
     private Rectangle bounds;
 
-    public Buttons(int xPos, int yPos,int width,int height, int rowIndex, int  num , Gamestate state) {
+    public Buttons(int xPos, int yPos, int width, int height, int rowIndex, int  num , Gamestate actualState,Gamestate newState,Game game) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
         this.rowIndex = rowIndex;
         this.num = num;
-        this.state = state;
+        this.actualState = actualState;
+        this.newState = newState;
+        this.game = game;
         loadImgs();
         initBounds();
     }
@@ -100,10 +104,17 @@ public class Buttons {
     }
 
     public void applyGamestate() {
-        if(state == Gamestate.QUIT){
+        if(newState == Gamestate.QUIT){
             System.exit(0);
         }
-        else  Gamestate.state = state;
+        else if(newState == Gamestate.PLAYING ){
+            if(actualState == Gamestate.DEATH){
+                game.initClasses();
+                Gamestate.state = newState;
+            }
+            else Gamestate.state = newState;
+        }
+        else  Gamestate.state = newState;
     }
 
     public void resetBools() {

@@ -26,14 +26,17 @@ public class Playing extends State implements Statemethods {
 
 	private void initClasses() {
 		player = new Player(400,300 , 72,58,this);
-		buttons = new Buttons(50,23,100,27,7,0,Gamestate.MENU);
+		buttons = new Buttons(50,23,100,27,7,0,Gamestate.PLAYING,Gamestate.MENU,this.game);
 		reset();
 
 	}
 
 	public void reset(){
+		player.setWidth(72);
+		player.setHeight(58);
 		player.setX(200);
 		player.setY(300);
+		player.setIsdead(false);
 		CameraX = 150;
 		player.xspeed=0;
 		player.yspeed=0;
@@ -45,7 +48,9 @@ public class Playing extends State implements Statemethods {
 		makeWall(offset,indiceWall);
 	}
 	public void deathScene(){
-		player.setX(200);
+		player.setWidth(144);
+		player.setHeight(116);
+		player.setX(250);
 		player.setY(300);
 		player.xspeed=0;
 		player.yspeed=0;
@@ -120,6 +125,9 @@ public class Playing extends State implements Statemethods {
 			g.drawString("Score : " + player.score,550,50);
 		}
 		else{
+			Font f =new Font(null , Font.BOLD , 20);
+			g.setFont(f);
+			g.drawString("You died",250,200);
 			player.draw((Graphics2D) g);
 			buttons.draw(g);
 		}
@@ -163,6 +171,11 @@ public class Playing extends State implements Statemethods {
 				break;
 		}
 
+	}
+
+	@Override
+	public void resetButtons() {
+			buttons.resetBools();
 	}
 
 	@Override

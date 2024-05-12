@@ -97,22 +97,22 @@ public class Player extends Entity{
 
     private void setAnimation() {
         int startAni = playerAction;
-
-        if (moving)
-            playerAction = RUN;
-        else if (isdead){
+        if(isdead){
             playerAction = DEATH;
         }
-        else
-            playerAction = IDLE;
-        if(inAir){
-            if(yspeed < 0) playerAction = JUMP_2;
-            else playerAction = FALL;
+        else {
+            if (moving)
+                playerAction = RUN;
+            else
+                playerAction = IDLE;
+            if(inAir){
+                if(yspeed < 0) playerAction = JUMP_2;
+                else playerAction = FALL;
+            }
+
+            if (attacking)
+                playerAction = ATTACK_1;
         }
-
-        if (attacking)
-            playerAction = ATTACK_1;
-
         if (startAni != playerAction)
             resetAniTick();
     }
@@ -193,6 +193,7 @@ public class Player extends Entity{
 
         //Death Code
         if(y > 800) {
+            inAir = false;
             isdead = true;
             //game.setGameState(Gamestate.DEATH);
             game.deathScene();
@@ -250,6 +251,10 @@ public class Player extends Entity{
 
     public boolean isalive(){
         return !isdead;
+    }
+    
+    public void setIsdead(boolean isdead){
+        this.isdead = isdead;
     }
 
 }

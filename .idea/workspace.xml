@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Game state and Menu">
-      <change afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ressources/button.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Death Scene first part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Gamestate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Gamestate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/DeathScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Statemethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Statemethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inputs/MouseInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/MouseInputs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/flori/Intellij-workspace/Tuto Jeu&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/flori/Intellij-workspace/Game_Project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -123,7 +123,10 @@
       <workItem from="1715187853417" duration="144000" />
       <workItem from="1715245135386" duration="1192000" />
       <workItem from="1715246388487" duration="679000" />
-      <workItem from="1715260428997" duration="2509000" />
+      <workItem from="1715260428997" duration="3408000" />
+      <workItem from="1715415824576" duration="2958000" />
+      <workItem from="1715420446588" duration="3069000" />
+      <workItem from="1715503077419" duration="1610000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -181,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715175101329</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Death Scene first part">
+      <created>1715263059275</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715263059275</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +205,8 @@
     <MESSAGE value="First part of gamestate and improve texture" />
     <MESSAGE value="platform generation finish" />
     <MESSAGE value="Game state and Menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game state and Menu" />
+    <MESSAGE value="Death Scene first part" />
+    <option name="LAST_COMMIT_MESSAGE" value="Death Scene first part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
