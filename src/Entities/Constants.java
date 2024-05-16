@@ -9,6 +9,27 @@ public class Constants {
         public static final int DOWN = 3;
     }
 
+    public static class EnnemyConstants {
+        public static final int IDLE = 0;
+        public static final int ATTACK = 1;
+        public static final int DEATH = 2;
+        public static final int WALK = 3;
+        public static final int Projectile = 4;
+
+        public static int GetSpriteEnnemyAmount(int player_action) {
+            switch (player_action) {
+                case WALK:
+                    return 11;
+                case ATTACK , Projectile:
+                    return 7;
+                case DEATH:
+                    return 5;
+                case IDLE:
+                default:
+                    return 4;
+            }
+        }
+    }
     public static class PlayerConstants {
         public static final int IDLE = 0;
         public static final int WALK = 1;
@@ -26,7 +47,7 @@ public class Constants {
         public static final int FALL = 13;
 
 
-        public static int GetSpriteAmount(int player_action) {
+        public static int GetSpritePlayerAmount(int player_action) {
             switch (player_action) {
                 case WALK,RUN,PUSH,JUMP,DEATH,CRAFT,CLIMB,ATTACK_1,ATTACK_2,ATTACK_3:
                     return 6;

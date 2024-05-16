@@ -1,12 +1,8 @@
 package Game;
 
-import Entities.ListWall;
-import Entities.Player;
-import Entities.Wall;
 import gamestates.DeathScene;
 import gamestates.Gamestate;
 import gamestates.Menu;
-import gamestates.Menu.*;
 import gamestates.Playing;
 
 import java.awt.*;
@@ -30,7 +26,7 @@ public class Game implements  Runnable{
     public Game(){
         initClasses();
         gamePanel = new GamePanel(this);
-        window = new Window(gamePanel,playing);
+        window = new Window(gamePanel);
         gamePanel.requestFocus();
         startGameloop();
 
@@ -123,14 +119,16 @@ public class Game implements  Runnable{
         }
     }
 
+    public void windowFocusLost() {
+        if (Gamestate.state == Gamestate.PLAYING)
+            playing.getPlayer().resetDirBooleans();
+    }
     public Menu getMenu() {
         return menu;
     }
-
     public Playing getPlaying() {
         return playing;
     }
-
     public DeathScene getDeathScene(){
         return deathScene;
     }

@@ -1,10 +1,8 @@
 package gamestates;
 
 import Game.Game;
-import gamestates.Gamestate;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -42,7 +40,7 @@ public class Buttons {
 
     private void loadImgs() {
         imgs = new BufferedImage[10][3];
-        InputStream is = getClass().getResourceAsStream("/ressources/button.png");
+        InputStream is = getClass().getResourceAsStream("/ressources/button-sprites.png");
         try {
             BufferedImage img = ImageIO.read(is);
             int x = 56 ;
@@ -71,7 +69,6 @@ public class Buttons {
     }
 
     public void draw(Graphics g) {
-        //200 54
         g.drawImage(imgs[rowIndex][num], xPos - xOffsetCenter, yPos, width, height, null);
     }
 
@@ -107,13 +104,10 @@ public class Buttons {
         if(newState == Gamestate.QUIT){
             System.exit(0);
         }
-        else if(newState == Gamestate.PLAYING ){
-            if(actualState == Gamestate.DEATH){
+        else if(actualState == Gamestate.DEATH){
                 game.initClasses();
                 Gamestate.state = newState;
             }
-            else Gamestate.state = newState;
-        }
         else  Gamestate.state = newState;
     }
 

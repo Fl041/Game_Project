@@ -12,10 +12,9 @@ public class Window {
 
     private Playing playing;
 
-    public Window(GamePanel gamePanel,Playing playing){
+    public Window(GamePanel gamePanel){
         jframe = new JFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.playing = playing;
         jframe.add(gamePanel);
 
         jframe.setResizable(false);
@@ -31,7 +30,7 @@ public class Window {
 
             @Override
             public void windowLostFocus(WindowEvent e) {
-                playing.windowFocusLost();
+                gamePanel.getGame().windowFocusLost();
             }
         });
     }

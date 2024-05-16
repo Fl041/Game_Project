@@ -2,11 +2,11 @@ package Entities;
 
 import java.util.LinkedList;
 
-public class ListWall<E> extends LinkedList<E> {
+public class ListUpdate<E> extends LinkedList<E> {
 
     private int maxSize;
 
-    public ListWall(int maxSize) {
+    public ListUpdate(int maxSize) {
         this.maxSize = maxSize;
     }
 

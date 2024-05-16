@@ -1,8 +1,6 @@
 package gamestates;
 
-import Entities.ListWall;
-import Entities.Player;
-import Entities.Wall;
+import Entities.*;
 import Game.Game;
 
 import java.awt.*;
@@ -13,7 +11,9 @@ import java.util.Random;
 public class Playing extends State implements Statemethods {
 	private Player player;
 	private Buttons buttons;
-	private ListWall<Wall> walls = new ListWall<>(400);
+	private ListUpdate<Wall> walls = new ListUpdate<>(400);
+	private ListUpdate<Enemy> ennemies = new ListUpdate<>(5);
+	private ListUpdate<EnemyProjectile> ennemiesprojectile = new ListUpdate<>(5);
 	public int CameraX;
 	private int offset;
 	private int indiceWall;
@@ -106,7 +106,13 @@ public class Playing extends State implements Statemethods {
 			for (Wall wall : walls) {
 				wall.set(CameraX);
 			}
-		}
+			for(Enemy enemy : ennemies){
+				enemy.update(CameraX);
+			}
+			for(EnemyProjectile enemyProjectile : ennemiesprojectile) {
+				enemyProjectile.update(CameraX);
+			}
+			}
 		else {
 			player.update();
 		}
@@ -119,6 +125,12 @@ public class Playing extends State implements Statemethods {
 			buttons.draw(g);
 			for(Wall wall : walls){
 				wall.draw((Graphics2D) g);
+			}
+			for(Enemy enemy : ennemies){
+				enemy.draw((Graphics2D) g);
+			}
+			for(EnemyProjectile enemyProjectile : ennemiesprojectile){
+				enemyProjectile.draw((Graphics2D) g);
 			}
 			Font f =new Font(null , Font.BOLD , 20);
 			g.setFont(f);
@@ -206,10 +218,6 @@ public class Playing extends State implements Statemethods {
 			}
 	}
 
-	public void windowFocusLost() {
-		player.resetDirBooleans();
-	}
-
 	public Player getPlayer() {
 		return player;
 	}
@@ -217,10 +225,12 @@ public class Playing extends State implements Statemethods {
 	public void setGameState(Gamestate state){
 		Gamestate.state = state;
 	}
-	public ListWall<Wall> getWalls() {
+	public ListUpdate<Wall> getWalls() {
 		return walls;
 	}
-
+	public ListUpdate<Enemy> getEnnemy() {
+		return ennemies;
+	}
 	public void setIndiceWall(int indiceWall) {
 		this.indiceWall = indiceWall;
 	}
@@ -231,6 +241,8 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,600,1));
 			walls.add(new Wall(offset + i*50,650,1));
 		}
+		ennemies.add(new Enemy(offset+600 , 400,100,100));
+		ennemiesprojectile.add(new EnemyProjectile(offset+600, 470,30,30));
 	}
 	public void make_straight_line2(int offset) {
 		for(int i = 0 ; i < 4 ; i++){

@@ -4,16 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Death Scene first part">
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Death Scene second part">
+      <change afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ressources/ennemy-sprites.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/ListWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/ListUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Wall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/DeathScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Statemethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Statemethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inputs/MouseInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/MouseInputs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/bouton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/button.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/ressources/button-sprites.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +66,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -71,6 +78,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\ressources" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game.Main" />
+      <module name="Game_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -126,7 +153,17 @@
       <workItem from="1715260428997" duration="3408000" />
       <workItem from="1715415824576" duration="2958000" />
       <workItem from="1715420446588" duration="3069000" />
-      <workItem from="1715503077419" duration="1610000" />
+      <workItem from="1715503077419" duration="2274000" />
+      <workItem from="1715510031028" duration="605000" />
+      <workItem from="1715521923294" duration="951000" />
+      <workItem from="1715541214956" duration="55000" />
+      <workItem from="1715682278193" duration="720000" />
+      <workItem from="1715694470284" duration="3451000" />
+      <workItem from="1715763421672" duration="1335000" />
+      <workItem from="1715777159168" duration="6584000" />
+      <workItem from="1715850404239" duration="4488000" />
+      <workItem from="1715859734433" duration="5198000" />
+      <workItem from="1715874565533" duration="628000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -191,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715263059275</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Death Scene second part">
+      <created>1715509599395</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715509599395</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +250,8 @@
     <MESSAGE value="platform generation finish" />
     <MESSAGE value="Game state and Menu" />
     <MESSAGE value="Death Scene first part" />
-    <option name="LAST_COMMIT_MESSAGE" value="Death Scene first part" />
+    <MESSAGE value="Death Scene second part" />
+    <option name="LAST_COMMIT_MESSAGE" value="Death Scene second part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -218,6 +263,14 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.util.ConcurrentModificationException" package="java.util" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.awt.image.RasterFormatException" package="java.awt.image" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="7" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

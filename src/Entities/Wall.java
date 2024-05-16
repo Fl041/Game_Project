@@ -21,11 +21,9 @@ public class Wall extends Entity{
         initHitbox(x,y,width,height);
     }
 
-    public int set(int CameraX){
+    public void set(int CameraX){
         x = startX + CameraX;
         getHitbox().x = (int) x;
-
-        return (int) x;
     }
 
     private void loadTexture(int numtexture) {

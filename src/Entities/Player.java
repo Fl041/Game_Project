@@ -1,6 +1,5 @@
 package Entities;
 
-import Game.Game;
 import gamestates.Gamestate;
 import gamestates.Playing;
 
@@ -9,7 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import static Entities.Constants.PlayerConstants.*;
 
@@ -80,7 +78,7 @@ public class Player extends Entity{
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= GetSpriteAmount(playerAction)) {
+            if (aniIndex >= GetSpritePlayerAmount(playerAction)) {
                 if(playerAction == DEATH ){
                     game.setGameState(Gamestate.DEATH);
                 }
@@ -184,6 +182,11 @@ public class Player extends Entity{
                 y= (int) hitbox.y;
             }
         }
+        for(Enemy enemy : game.getEnnemy()){
+            if(hitbox.intersects(enemy.getHitbox())) {
+                    if(playerAction == ATTACK_1) enemy.setIsdead(true);
+                }
+            }
 
         game.CameraX-= xspeed;
         y += yspeed;
