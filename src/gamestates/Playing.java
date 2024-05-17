@@ -12,8 +12,7 @@ public class Playing extends State implements Statemethods {
 	private Player player;
 	private Buttons buttons;
 	private ListUpdate<Wall> walls = new ListUpdate<>(400);
-	private ListUpdate<Enemy> ennemies = new ListUpdate<>(5);
-	private ListUpdate<EnemyProjectile> ennemiesprojectile = new ListUpdate<>(5);
+	private ListUpdate<Enemy> ennemies = new ListUpdate<>(2);
 	public int CameraX;
 	private int offset;
 	private int indiceWall;
@@ -58,7 +57,7 @@ public class Playing extends State implements Statemethods {
 
 	public  void makeWall(int offset,int indiceWall){
 		Random rand = new Random();
-		int index = rand.nextInt(indiceWall);
+		int index = rand.nextInt(1);
 		//System.out.println("generation of wall");
 		if(index == 0 ){
 			make_straight_line(offset);
@@ -109,9 +108,6 @@ public class Playing extends State implements Statemethods {
 			for(Enemy enemy : ennemies){
 				enemy.update(CameraX);
 			}
-			for(EnemyProjectile enemyProjectile : ennemiesprojectile) {
-				enemyProjectile.update(CameraX);
-			}
 			}
 		else {
 			player.update();
@@ -129,9 +125,7 @@ public class Playing extends State implements Statemethods {
 			for(Enemy enemy : ennemies){
 				enemy.draw((Graphics2D) g);
 			}
-			for(EnemyProjectile enemyProjectile : ennemiesprojectile){
-				enemyProjectile.draw((Graphics2D) g);
-			}
+
 			Font f =new Font(null , Font.BOLD , 20);
 			g.setFont(f);
 			g.drawString("Score : " + player.score,550,50);
@@ -231,9 +225,14 @@ public class Playing extends State implements Statemethods {
 	public ListUpdate<Enemy> getEnnemy() {
 		return ennemies;
 	}
+
+
+
 	public void setIndiceWall(int indiceWall) {
 		this.indiceWall = indiceWall;
 	}
+
+
 	public void make_straight_line(int offset){
 		for(int i = 0 ; i<14 ; i++){
 			walls.add(new Wall(offset + i*50,500,0));
@@ -242,7 +241,6 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,650,1));
 		}
 		ennemies.add(new Enemy(offset+600 , 400,100,100));
-		ennemiesprojectile.add(new EnemyProjectile(offset+600, 470,30,30));
 	}
 	public void make_straight_line2(int offset) {
 		for(int i = 0 ; i < 4 ; i++){

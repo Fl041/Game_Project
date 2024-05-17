@@ -17,10 +17,10 @@ public class Player extends Entity{
     private int aniTick ,aniIndex;
     private final int aniSpeed = 25 ;
     private int playerAction = IDLE;
-    private boolean moving = false , attacking = false , inAir = false, isdead = false;
+    private boolean moving = false , attacking = false , inAir = false, isdead = false , hit = false;
     private boolean left , up , down , right ;
 
-    static Playing game ;
+    private static Playing game ;
     public double xspeed;
     public double yspeed;
 
@@ -85,6 +85,7 @@ public class Player extends Entity{
                 else {
                     aniIndex = 0;
                 }
+                hit = false;
                 attacking = false;
 
             }
@@ -108,6 +109,7 @@ public class Player extends Entity{
                 else playerAction = FALL;
             }
 
+            if(hit) playerAction = HIT;
             if (attacking)
                 playerAction = ATTACK_1;
         }
@@ -185,8 +187,15 @@ public class Player extends Entity{
         for(Enemy enemy : game.getEnnemy()){
             if(hitbox.intersects(enemy.getHitbox())) {
                     if(playerAction == ATTACK_1) enemy.setIsdead(true);
+            }
+            for(EnemyProjectile enemyProjectile : enemy.getEnnemiesprojectile()){
+                if(hitbox.intersects(enemyProjectile.getHitbox())){
+                    hit = true;
+                    xspeed =0 ;
+                    yspeed =0 ;
                 }
             }
+        }
 
         game.CameraX-= xspeed;
         y += yspeed;

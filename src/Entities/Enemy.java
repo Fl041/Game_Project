@@ -1,5 +1,7 @@
 package Entities;
 
+import gamestates.Playing;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,11 +12,12 @@ import static Entities.Constants.EnnemyConstants.*;
 
 public class Enemy extends Entity{
     private BufferedImage[][] animations;
-    private int aniTick ,aniIndex;
+    private int aniTick ,aniIndex,attackTick;
     private int startX;
     private int ennemyAction = IDLE;
     private final int aniSpeed = 25 ;
     private boolean moving = false , attacking = false , isdead = false;
+    private ListUpdate<EnemyProjectile> ennemiesprojectile = new ListUpdate<>(2);
 
     public Enemy(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -25,6 +28,9 @@ public class Enemy extends Entity{
 
     public void update(int cameraX) {
             set(cameraX);
+            for(EnemyProjectile enemyProjectile : ennemiesprojectile) {
+                enemyProjectile.update(cameraX);
+            }
             updateAnimationTick();
             setAnimation();
     }
@@ -33,14 +39,19 @@ public class Enemy extends Entity{
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
+            if(aniIndex == 5 ){
+                if(ennemyAction == ATTACK){
+                    makeProjectile((int) x, (int) y);
+            }
+            }
             if (aniIndex >= GetSpriteEnnemyAmount(ennemyAction)) {
                 if(ennemyAction == DEATH ){
                     aniIndex = 4 ;
                 }
                 else {
                     aniIndex = 0;
+                    attacking = false;
                 }
-                attacking = false;
 
             }
 
@@ -55,7 +66,10 @@ public class Enemy extends Entity{
             ennemyAction = DEATH;
         }
         else {
-            ennemyAction = IDLE;
+            if(attacking)
+                ennemyAction = ATTACK;
+            else
+                ennemyAction = IDLE;
         }
         if (startAni != ennemyAction)
             resetAniTick();
@@ -69,10 +83,21 @@ public class Enemy extends Entity{
     public void set(int CameraX){
         x = startX + CameraX;
         getHitbox().x = (int) x;
+        if((x<550)&&(x>0)&&(attackTick>=100)){
+            attacking = true;
+            attackTick = 0 ;
+        }
+        attackTick++;
     }
 
+    public void makeProjectile(int x , int y){
+        ennemiesprojectile.add(new EnemyProjectile(x, y+70,30,30));
+    }
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[ennemyAction][aniIndex], (int) x, (int) y, width, height, null);
+        for(EnemyProjectile enemyProjectile : ennemiesprojectile){
+            enemyProjectile.draw(gtd);
+        }
     }
 
     private void loadAnimations() {
@@ -112,4 +137,9 @@ public class Enemy extends Entity{
     public void setIsdead(boolean dead){
         isdead = dead;
     }
+
+    public ListUpdate<EnemyProjectile> getEnnemiesprojectile() {
+        return ennemiesprojectile;
+    }
+
 }

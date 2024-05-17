@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Death Scene second part">
-      <change afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ressources/ennemy-sprites.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Fixing bugs and enemy first implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/ListWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/ListUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/bouton.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/button.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/ressources/button-sprites.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +153,9 @@
       <workItem from="1715777159168" duration="6584000" />
       <workItem from="1715850404239" duration="4488000" />
       <workItem from="1715859734433" duration="5198000" />
-      <workItem from="1715874565533" duration="628000" />
+      <workItem from="1715874565533" duration="924000" />
+      <workItem from="1715939289172" duration="2243000" />
+      <workItem from="1715951713225" duration="3466000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -235,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715509599395</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixing bugs and enemy first implementation">
+      <created>1715875459436</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715875459436</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +250,8 @@
     <MESSAGE value="Game state and Menu" />
     <MESSAGE value="Death Scene first part" />
     <MESSAGE value="Death Scene second part" />
-    <option name="LAST_COMMIT_MESSAGE" value="Death Scene second part" />
+    <MESSAGE value="Fixing bugs and enemy first implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs and enemy first implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
