@@ -17,7 +17,6 @@ public class EnemyProjectile extends Entity{
     public EnemyProjectile(float x, float y, int width, int height) {
         super(x, y, width, height);
         this.startX = (int) x;
-        System.out.println("X création :" + x);
         loadAnimations();
         initHitbox(x,y,width,height);
     }
@@ -41,14 +40,13 @@ public class EnemyProjectile extends Entity{
     public void set(int CameraX){
         //trouver une solution pour le camera x
         x = startX ;
-        startX -= 2 ;
+        startX -= (2 + CameraX);
         getHitbox().x = (int) x;
 
     }
 
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[aniIndex], (int) x, (int) y, width, height, null);
-        System.out.println(x);
     }
 
     private void loadAnimations() {

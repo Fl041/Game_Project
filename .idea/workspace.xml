@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Fixing bugs and enemy first implementation">
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="enemy projectile second application">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +41,12 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Game/Main.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2dRs6TT7P5nBvT16jnoh8ykjG41" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,9 +55,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/flori/Intellij-workspace/Game_Project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -155,7 +166,7 @@
       <workItem from="1715859734433" duration="5198000" />
       <workItem from="1715874565533" duration="924000" />
       <workItem from="1715939289172" duration="2243000" />
-      <workItem from="1715951713225" duration="3466000" />
+      <workItem from="1715951713225" duration="3750000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -234,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715875459436</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="enemy projectile second application">
+      <created>1715955482576</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715955482578</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +269,8 @@
     <MESSAGE value="Death Scene first part" />
     <MESSAGE value="Death Scene second part" />
     <MESSAGE value="Fixing bugs and enemy first implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs and enemy first implementation" />
+    <MESSAGE value="enemy projectile second application" />
+    <option name="LAST_COMMIT_MESSAGE" value="enemy projectile second application" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

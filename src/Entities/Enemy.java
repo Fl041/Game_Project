@@ -18,10 +18,12 @@ public class Enemy extends Entity{
     private final int aniSpeed = 25 ;
     private boolean moving = false , attacking = false , isdead = false;
     private ListUpdate<EnemyProjectile> ennemiesprojectile = new ListUpdate<>(2);
+    private Player player;
 
-    public Enemy(float x, float y, int width, int height) {
+    public Enemy(float x, float y, int width, int height,Player player) {
         super(x, y, width, height);
         this.startX = (int) x;
+        this.player = player;
         loadAnimations();
         initHitbox(x,y,width,height);
     }
@@ -29,7 +31,7 @@ public class Enemy extends Entity{
     public void update(int cameraX) {
             set(cameraX);
             for(EnemyProjectile enemyProjectile : ennemiesprojectile) {
-                enemyProjectile.update(cameraX);
+                enemyProjectile.update((int) player.getXspeed());
             }
             updateAnimationTick();
             setAnimation();

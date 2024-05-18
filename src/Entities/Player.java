@@ -225,6 +225,10 @@ public class Player extends Entity{
         down = false;
     }
 
+    public double getXspeed(){
+        return xspeed;
+    }
+
     public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }

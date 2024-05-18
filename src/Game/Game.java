@@ -7,9 +7,8 @@ import gamestates.Playing;
 
 import java.awt.*;
 
-
-
 public class Game implements  Runnable{
+
     private Window window;
     private GamePanel gamePanel;
     private Thread gameThread;

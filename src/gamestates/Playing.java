@@ -57,8 +57,7 @@ public class Playing extends State implements Statemethods {
 
 	public  void makeWall(int offset,int indiceWall){
 		Random rand = new Random();
-		int index = rand.nextInt(1);
-		//System.out.println("generation of wall");
+		int index = rand.nextInt(indiceWall);
 		if(index == 0 ){
 			make_straight_line(offset);
 			setIndiceWall(6);
@@ -240,7 +239,7 @@ public class Playing extends State implements Statemethods {
 			walls.add(new Wall(offset + i*50,600,1));
 			walls.add(new Wall(offset + i*50,650,1));
 		}
-		ennemies.add(new Enemy(offset+600 , 400,100,100));
+		ennemies.add(new Enemy(offset+600 , 400,100,100,player));
 	}
 	public void make_straight_line2(int offset) {
 		for(int i = 0 ; i < 4 ; i++){
