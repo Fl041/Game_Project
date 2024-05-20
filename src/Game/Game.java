@@ -18,6 +18,7 @@ public class Game implements  Runnable{
     private Playing playing;
     private Menu menu;
     private DeathScene deathScene;
+    private boolean notRestart = true;
 
 
 
@@ -137,4 +138,8 @@ public class Game implements  Runnable{
     public void setBest_score(int best_score) {
         this.best_score = best_score;
     }
+    public boolean isNotRestart() {
+        return notRestart;
+    }
+    public void setRestart(boolean isrestart){  notRestart = isrestart;}
 }

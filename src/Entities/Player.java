@@ -14,7 +14,8 @@ import static Entities.Constants.PlayerConstants.*;
 public class Player extends Entity{
 
     private BufferedImage[][] animations;
-    private int aniTick ,aniIndex;
+    private BufferedImage[] animationhealth;
+    private int aniTick ,aniIndex , healthIndex = 0;
     private final int aniSpeed = 25 ;
     private int playerAction = IDLE;
     private boolean moving = false , attacking = false , inAir = false, isdead = false , hit = false;
@@ -32,7 +33,8 @@ public class Player extends Entity{
         this.score = 0;
         this.nbleft = 0 ;
         loadAnimations();
-       initHitbox(x,y,width,height);
+        loadHealthAnimation();
+        initHitbox(x,y,width,height);
     }
 
     public void update() {
@@ -47,16 +49,21 @@ public class Player extends Entity{
         }
     }
 
+    public void draw(Graphics2D gtd){
+        gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
+        gtd.drawImage(animationhealth[healthIndex], (int) x, (int) y-36, 36, 30, null);
+    }
+
     private void loadAnimations() {
         InputStream is = getClass().getResourceAsStream("/ressources/player_sprites.png");
-        int[] heigth  = {0,70,146,212,282,354,440,510,581,652,724,794};
+        int[] height  = {0,70,146,212,282,354,440,510,581,652,724,794};
         try {
             BufferedImage img = ImageIO.read(is);
 
             animations = new BufferedImage[14][6];
             for (int j = 0; j < animations.length-2; j++)
                 for (int i = 0; i < animations[j].length; i++){
-                    animations[j][i] = img.getSubimage(i * 72, heigth[j], 72, 58);
+                    animations[j][i] = img.getSubimage(i * 72, height[j], 72, 58);
                 }
 
         } catch (IOException e) {
@@ -73,6 +80,29 @@ public class Player extends Entity{
         animations[13][0] = animations[4][4];
     }
 
+    private void loadHealthAnimation(){
+        InputStream is = getClass().getResourceAsStream("/ressources/coeur-sprites.png");
+        //y = 23 , x = 10 , width = 72  dif = 15 height = 63
+        try {
+            BufferedImage img = ImageIO.read(is);
+            animationhealth = new BufferedImage[5];
+            int x = 10;
+            for(int i = 0 ; i <animationhealth.length ; i++){
+                animationhealth[i] = img.getSubimage(x + (i*72 + (i*15)),23,72,63);
+            }
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -83,6 +113,7 @@ public class Player extends Entity{
                     game.setGameState(Gamestate.DEATH);
                 }
                 else {
+                    if(playerAction == HIT) healthIndex++;
                     aniIndex = 0;
                 }
                 hit = false;
@@ -109,7 +140,9 @@ public class Player extends Entity{
                 else playerAction = FALL;
             }
 
-            if(hit) playerAction = HIT;
+            if(hit) {
+                playerAction = HIT;
+            }
             if (attacking)
                 playerAction = ATTACK_1;
         }
@@ -204,20 +237,14 @@ public class Player extends Entity{
         hitbox.y = y;
 
         //Death Code
-        if(y > 800) {
+        if(((y > 800) && (game.getGame().isNotRestart()) ) || (healthIndex == 4)) {
             inAir = false;
             isdead = true;
-            //game.setGameState(Gamestate.DEATH);
             game.deathScene();
         }
 
     }
 
-    public void draw(Graphics2D gtd){
-        gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
-        gtd.setColor(Color.BLACK);
-
-    }
     public void resetDirBooleans() {
         left = false;
         right = false;
@@ -271,6 +298,10 @@ public class Player extends Entity{
     
     public void setIsdead(boolean isdead){
         this.isdead = isdead;
+    }
+
+    public void setHealthIndex(int index){
+        this.healthIndex = index;
     }
 
 }

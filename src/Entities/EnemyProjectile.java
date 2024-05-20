@@ -25,6 +25,7 @@ public class EnemyProjectile extends Entity{
         set(cameraX);
         updateAnimationTick();
     }
+
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {

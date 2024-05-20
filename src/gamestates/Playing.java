@@ -53,6 +53,7 @@ public class Playing extends State implements Statemethods {
 		player.setY(300);
 		player.xspeed=0;
 		player.yspeed=0;
+		player.setHealthIndex(4);
 	}
 
 	public  void makeWall(int offset,int indiceWall){
@@ -88,7 +89,7 @@ public class Playing extends State implements Statemethods {
 		}
 		else {
 			make_descent(offset);
-			setIndiceWall(8);
+			setIndiceWall(6);
 		}
 
 	}
@@ -225,12 +226,9 @@ public class Playing extends State implements Statemethods {
 		return ennemies;
 	}
 
-
-
 	public void setIndiceWall(int indiceWall) {
 		this.indiceWall = indiceWall;
 	}
-
 
 	public void make_straight_line(int offset){
 		for(int i = 0 ; i<14 ; i++){

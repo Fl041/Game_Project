@@ -108,6 +108,11 @@ public class Buttons {
                 game.initClasses();
                 Gamestate.state = newState;
             }
+        else if(actualState == Gamestate.PLAYING){
+            game.setRestart(false);
+            game.initClasses();
+            Gamestate.state = newState;
+        }
         else  Gamestate.state = newState;
     }
 

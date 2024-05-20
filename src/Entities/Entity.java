@@ -3,7 +3,7 @@ package Entities;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Entity {
+public abstract class Entity {
     protected float x, y ;
     protected  int width , height ;
 

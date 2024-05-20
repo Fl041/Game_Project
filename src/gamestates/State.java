@@ -4,7 +4,7 @@ import Game.Game;
 
 import java.awt.event.MouseEvent;
 
-public class State {
+public abstract class State {
 
 	protected Game game;
 
