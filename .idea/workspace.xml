@@ -4,17 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Fixing bug for enemy projectile">
-      <change afterPath="$PROJECT_DIR$/src/ressources/coeur-sprites.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Player HP implementation">
+      <change afterPath="$PROJECT_DIR$/src/Entities/Cloud.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entities/Mountain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utilz/Load.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Cloud-sprites.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/background2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/mountain-sprites.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/player-sprites.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/ListUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/ListUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Wall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/button-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/button-sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/coeur-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/coeur-sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/ennemy-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/ennemy-sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/outside_sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/outside_sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ressources/player_sprites.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +75,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/flori/Downloads/decorateurDPSolution",
+    "last_opened_file_path": "C:/Users/flori/Intellij-workspace/Game_Project/src/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,10 +87,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\resources" />
       <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\ressources" />
       <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\gamestates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\resources" />
       <recent name="C:\Users\flori\Intellij-workspace\Game_Project\src\ressources" />
     </key>
   </component>
@@ -168,6 +183,7 @@
       <workItem from="1715874565533" duration="924000" />
       <workItem from="1715939289172" duration="2243000" />
       <workItem from="1715951713225" duration="3750000" />
+      <workItem from="1716366562918" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="Window ,GameLoop and Player">
       <created>1709996357659</created>
@@ -261,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716021370367</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Player HP implementation">
+      <option name="closed" value="true" />
+      <created>1716197518264</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716197518264</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +304,8 @@
     <MESSAGE value="Fixing bugs and enemy first implementation" />
     <MESSAGE value="enemy projectile second application" />
     <MESSAGE value="Fixing bug for enemy projectile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing bug for enemy projectile" />
+    <MESSAGE value="Player HP implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player HP implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

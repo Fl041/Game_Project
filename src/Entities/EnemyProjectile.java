@@ -1,12 +1,12 @@
 package Entities;
 
-import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static Entities.Constants.EnnemyConstants.*;
+import static Utilz.Constants.EnnemyConstants.*;
+import static Utilz.Constants.LoadConstants.ENEMY_PROJECTILE;
+import static Utilz.Load.loadResources;
 
 public class EnemyProjectile extends Entity{
     private BufferedImage[] animations;
@@ -21,8 +21,8 @@ public class EnemyProjectile extends Entity{
         initHitbox(x,y,width,height);
     }
 
-    public void update(int cameraX) {
-        set(cameraX);
+    public void update(int playerSpeed) {
+        set(playerSpeed);
         updateAnimationTick();
     }
 
@@ -38,10 +38,10 @@ public class EnemyProjectile extends Entity{
 
     }
 
-    public void set(int CameraX){
+    public void set(int playerSpeed){
         //trouver une solution pour le camera x
         x = startX ;
-        startX -= (2 + CameraX);
+        startX -= (2 + playerSpeed);
         getHitbox().x = (int) x;
 
     }
@@ -51,25 +51,12 @@ public class EnemyProjectile extends Entity{
     }
 
     private void loadAnimations() {
-        InputStream is = getClass().getResourceAsStream("/ressources/ennemy-sprites.png");
-        try {
-            BufferedImage img = ImageIO.read(is);
-
-            int [] height = {122,122,122,121,122,122,121};
+        BufferedImage img = loadResources(ENEMY_PROJECTILE);
+        int [] height = {122,122,122,121,122,122,121};
             int [] width = {514,481,452,420,386,352,317};
             animations = new BufferedImage[7];
             for (int j = 0; j < animations.length; j++){
                         animations[j] = img.getSubimage(width[j] ,height[j] , 21, 21);
                 }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

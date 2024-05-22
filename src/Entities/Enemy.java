@@ -1,12 +1,12 @@
 package Entities;
 
-import javax.imageio.ImageIO;
+import Utilz.ListUpdate;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static Entities.Constants.EnnemyConstants.*;
+import static Utilz.Constants.EnnemyConstants.*;
+import static Utilz.Constants.LoadConstants.ENEMY;
+import static Utilz.Load.loadResources;
 
 public class Enemy extends Entity{
     private BufferedImage[][] animations;
@@ -103,12 +103,9 @@ public class Enemy extends Entity{
     }
 
     private void loadAnimations() {
-        InputStream is = getClass().getResourceAsStream("/ressources/ennemy-sprites.png");
+        BufferedImage img = loadResources(ENEMY);
         int[] height  = {6,63,143,199};
         int[] walkX = {500,448,395,343,285,230,181,135,92,50,4};
-        try {
-            BufferedImage img = ImageIO.read(is);
-
             int x =496 ;
             animations = new BufferedImage[4][11];
             for (int j = 0; j < animations.length; j++)
@@ -125,15 +122,6 @@ public class Enemy extends Entity{
                     }
                 }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void setIsdead(boolean dead){

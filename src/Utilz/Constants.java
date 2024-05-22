@@ -1,14 +1,6 @@
-package Entities;
+package Utilz;
 
 public class Constants {
-
-    public static class Directions {
-        public static final int LEFT = 0;
-        public static final int UP = 1;
-        public static final int RIGHT = 2;
-        public static final int DOWN = 3;
-    }
-
     public static class EnnemyConstants {
         public static final int IDLE = 0;
         public static final int ATTACK = 1;
@@ -60,5 +52,16 @@ public class Constants {
                     return 1;
             }
         }
+    }
+    public static class LoadConstants {
+        public static final String PLAYER = "/resources/player-sprites.png";
+        public static final String LIFE = "/resources/coeur-sprites.png";
+        public static final String ENEMY = "/resources/ennemy-sprites.png";
+        public static final String ENEMY_PROJECTILE = "/resources/ennemy-sprites.png";
+        public static final String WALL = "/resources/outside_sprites.png";
+        public static final String BUTTON = "/resources/button-sprites.png";
+        public static final String BACKGROUND = "/resources/background.jpg";
+        public static final String CLOUD = "/resources/Cloud-sprites.png";
+        public static final String MOUNTAIN = "/resources/mountain-sprites.png";
     }
 }

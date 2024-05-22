@@ -2,14 +2,12 @@ package Entities;
 
 import gamestates.Gamestate;
 import gamestates.Playing;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static Entities.Constants.PlayerConstants.*;
+import static Utilz.Constants.LoadConstants.*;
+import static Utilz.Constants.PlayerConstants.*;
+import static Utilz.Load.loadResources;
 
 public class Player extends Entity{
 
@@ -55,52 +53,26 @@ public class Player extends Entity{
     }
 
     private void loadAnimations() {
-        InputStream is = getClass().getResourceAsStream("/ressources/player_sprites.png");
         int[] height  = {0,70,146,212,282,354,440,510,581,652,724,794};
-        try {
-            BufferedImage img = ImageIO.read(is);
+        BufferedImage img = loadResources(PLAYER);
 
             animations = new BufferedImage[14][6];
             for (int j = 0; j < animations.length-2; j++)
                 for (int i = 0; i < animations[j].length; i++){
                     animations[j][i] = img.getSubimage(i * 72, height[j], 72, 58);
                 }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
         animations[12][0] = animations[4][3];
         animations[13][0] = animations[4][4];
     }
 
     private void loadHealthAnimation(){
-        InputStream is = getClass().getResourceAsStream("/ressources/coeur-sprites.png");
         //y = 23 , x = 10 , width = 72  dif = 15 height = 63
-        try {
-            BufferedImage img = ImageIO.read(is);
-            animationhealth = new BufferedImage[5];
+        BufferedImage img = loadResources(LIFE);
+        animationhealth = new BufferedImage[5];
             int x = 10;
             for(int i = 0 ; i <animationhealth.length ; i++){
                 animationhealth[i] = img.getSubimage(x + (i*72 + (i*15)),23,72,63);
             }
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 
     private void updateAnimationTick() {
@@ -187,7 +159,7 @@ public class Player extends Entity{
             hitbox.y--;
         }
 
-        yspeed += 0.25;
+        yspeed += 0.23;
         //Horizontal Collision
         hitbox.x += xspeed;
         for(Wall wall : game.getWalls()){

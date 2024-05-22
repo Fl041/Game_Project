@@ -1,12 +1,10 @@
 package gamestates;
 
 import Game.Game;
-
-import javax.imageio.ImageIO;
+import Utilz.Load;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
+import static Utilz.Constants.LoadConstants.BUTTON;
 
 public class Buttons {
     private int xPos, yPos, rowIndex , num;
@@ -40,30 +38,18 @@ public class Buttons {
 
     private void loadImgs() {
         imgs = new BufferedImage[10][3];
-        InputStream is = getClass().getResourceAsStream("/ressources/button-sprites.png");
-        try {
-            BufferedImage img = ImageIO.read(is);
-            int x = 56 ;
-            int y1 = 39;
-            int y2 = 296;
-            for (int i = 0; i < imgs.length/2; i++) {
-                for (int j = 0; j < imgs[i].length; j++) {
+        BufferedImage img = Load.loadResources(BUTTON);
+        int x = 56 ;
+        int y1 = 39;
+        int y2 = 296;
+        for (int i = 0; i < imgs.length/2; i++) {
+            for (int j = 0; j < imgs[i].length; j++) {
                     imgs[i][j] =img.getSubimage(x + i * (200 + 44), y1 + j * (54 + 18), 200, 54);
-                }
             }
-            for (int i = 5; i < imgs.length; i++) {
-                for (int j = 0; j < imgs[i].length; j++) {
-                    imgs[i][j] =img.getSubimage(x + (i-5) * (200 + 44), y2 + j * (54 + 18), 200, 54);
-                }
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        }
+        for (int i = 5; i < imgs.length; i++) {
+            for (int j = 0; j < imgs[i].length; j++) {
+                imgs[i][j] =img.getSubimage(x + (i-5) * (200 + 44), y2 + j * (54 + 18), 200, 54);
             }
         }
     }

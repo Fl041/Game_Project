@@ -2,23 +2,38 @@ package gamestates;
 
 import Entities.*;
 import Game.Game;
+import Utilz.ListUpdate;
+import Utilz.Load;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.Random;
+
+import static Utilz.Constants.LoadConstants.BACKGROUND;
+import static Utilz.Constants.LoadConstants.MOUNTAIN;
 
 public class Playing extends State implements Statemethods {
 	private Player player;
 	private Buttons buttons;
+	private BufferedImage background;
 	private ListUpdate<Wall> walls = new ListUpdate<>(400);
 	private ListUpdate<Enemy> ennemies = new ListUpdate<>(2);
+	private ListUpdate<Cloud> cloudsTop = new ListUpdate<>(9);
+	private ListUpdate<Cloud> cloudsBot = new ListUpdate<>(5);
+	private ListUpdate<Mountain> mountains = new ListUpdate<>(5);
 	public int CameraX;
 	private int offset;
 	private int indiceWall;
+	private int offsetCloudTop ;
+	private int offsetCloudBot;
+	private int offsetMountain;
+	private int indiceCloud;
 
 	public Playing(Game game) {
 		super(game);
+		loadBackground();
 		initClasses();
 	}
 
@@ -28,6 +43,10 @@ public class Playing extends State implements Statemethods {
 		buttons = new Buttons(50,23,100,27,7,0,Gamestate.PLAYING,Gamestate.MENU,this.game);
 		reset();
 
+	}
+
+	private void loadBackground(){
+		background = Load.loadResources(BACKGROUND);
 	}
 
 	public void reset(){
@@ -43,8 +62,14 @@ public class Playing extends State implements Statemethods {
 		player.score = 0;
 		walls.clear();
 		offset = -150;
+		offsetCloudTop = -150;
+		offsetCloudBot = -150;
+		offsetMountain = -150;
 		indiceWall = 1 ;
 		makeWall(offset,indiceWall);
+		makeCloud(offsetCloudTop,0);
+		makeCloud(offsetCloudBot,1);
+		makeMountain(offset);
 	}
 	public void deathScene(){
 		player.setWidth(144);
@@ -93,22 +118,60 @@ public class Playing extends State implements Statemethods {
 		}
 
 	}
+	public void makeCloud(int offset, int indiceCloud){
+		Random rand = new Random();
+		if(indiceCloud == 0){
+			cloudsTop.add(new Cloud(offset + rand.nextInt(150)+50, rand.nextInt(150) +50 , 10,10, rand.nextInt(3),1,player));
+			cloudsTop.add(new Cloud(offset + rand.nextInt(150)+250, rand.nextInt(150) , 10,10, rand.nextInt(3),1,player));
+			cloudsTop.add(new Cloud(offset + rand.nextInt(150)+450, rand.nextInt(150) , 10,10, rand.nextInt(3),1,player));
+		}else{
+			cloudsBot.add(new Cloud(offset + 75, 350, 10,10, rand.nextInt(2) + 3,0,player));
+			cloudsBot.add(new Cloud(offset + 425, 350, 10,10, rand.nextInt(2) + 3,0,player));
+		}
+	}
+	public void makeMountain(int offset){
+		Random rand = new Random();
+		mountains.add(new Mountain(offset ,250,750,500, rand.nextInt(1)+ 2, player));
+		mountains.add(new Mountain(offset +750 ,250,750,500, rand.nextInt(1)+2, player));
+	}
 	@Override
 	public void update() {
+
 		if(player.isalive()){
-			if(walls.get(walls.size() -1).getX() <800){
+			if(walls.getLast().getX() <800){
 				offset += 800 ;
 				makeWall(offset,indiceWall);
 			}
+			if(mountains.getLast().getX() < 800){
+				offsetMountain += 800;
+				makeMountain(offsetMountain);
+			}
+			if(cloudsTop.getLast().getX() <800){
+				offsetCloudTop += 800 ;
+				makeCloud(offsetCloudTop,0);
+			}
+			if(cloudsBot.getLast().getX() <800){
+				offsetCloudBot += 800 ;
+				makeCloud(offsetCloudBot,1);
+			}
 			player.update();
 			buttons.update();
+			for(Mountain mountain : mountains){
+				mountain.set();
+			}
+			for(Cloud cloud : cloudsTop){
+				cloud.set(CameraX);
+			}
+			for(Cloud cloud : cloudsBot){
+				cloud.set(CameraX);
+			}
 			for (Wall wall : walls) {
 				wall.set(CameraX);
 			}
 			for(Enemy enemy : ennemies){
 				enemy.update(CameraX);
 			}
-			}
+		}
 		else {
 			player.update();
 		}
@@ -116,7 +179,17 @@ public class Playing extends State implements Statemethods {
 
 	@Override
 	public void draw(Graphics g) {
+		g.drawImage(background,0,0,700,700,null);
 		if(player.isalive()) {
+			for(Mountain mountain : mountains){
+				mountain.draw((Graphics2D) g);
+			}
+			for(Cloud cloud : cloudsTop){
+				cloud.draw((Graphics2D) g);
+			}
+			for(Cloud cloud : cloudsBot){
+				cloud.draw((Graphics2D) g);
+			}
 			player.draw((Graphics2D) g);
 			buttons.draw(g);
 			for(Wall wall : walls){

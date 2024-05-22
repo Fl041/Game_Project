@@ -1,10 +1,8 @@
 package Entities;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
+import static Utilz.Constants.LoadConstants.WALL;
+import static Utilz.Load.loadResources;
 
 public class Wall extends Entity{
 
@@ -27,28 +25,14 @@ public class Wall extends Entity{
     }
 
     private void loadTexture(int numtexture) {
-        InputStream is = getClass().getResourceAsStream("/ressources/outside_sprites.png");
-        try {
-            BufferedImage img = ImageIO.read(is);
-            if(numtexture == 0 )
+        BufferedImage img = loadResources(WALL);
+        if(numtexture == 0 )
             texture = img.getSubimage(27,0 , 46, 46);
             else texture = img.getSubimage(26,22 , 47, 47);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
     public void draw(Graphics2D gtd){
         gtd.drawImage( texture, (int) x, (int) y,getWidth(),getHeight(),null);
-        /*gtd.setColor(Color.BLACK);
-        gtd.drawRect((int) x, (int) y,width,height);
-        gtd.setColor(Color.WHITE);*/
+
     }
 
     public int getNumtexture(){

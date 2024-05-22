@@ -1,4 +1,4 @@
-package Entities;
+package Utilz;
 
 import java.util.LinkedList;
 
