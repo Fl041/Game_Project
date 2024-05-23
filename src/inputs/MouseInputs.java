@@ -92,6 +92,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case PLAYING:
                 gamePanel.getGame().getPlaying().mouseMoved(e);
                 break;
+            case DEATH:
+                gamePanel.getGame().getDeathScene().mouseMoved(e);
+                break;
             default:
                 break;
 

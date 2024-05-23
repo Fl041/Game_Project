@@ -4,30 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Player HP implementation">
-      <change afterPath="$PROJECT_DIR$/src/Entities/Cloud.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/Mountain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilz/Load.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/Cloud-sprites.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/background2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/mountain-sprites.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/player-sprites.png" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Fixing bugs and making the moving background">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Cloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Cloud.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/ListUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/ListUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Buttons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/DeathScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/button-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/button-sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/coeur-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/coeur-sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/ennemy-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/ennemy-sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/outside_sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/outside_sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ressources/player_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inputs/MouseInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/MouseInputs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Cloud-sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Cloud-sprites.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +61,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/flori/Intellij-workspace/Game_Project/src/resources",
+    "last_opened_file_path": "C:/Users/flori/Intellij-workspace/jeu_test",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -285,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716197518264</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixing bugs and making the moving background">
+      <option name="closed" value="true" />
+      <created>1716390198577</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716390198577</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +299,8 @@
     <MESSAGE value="enemy projectile second application" />
     <MESSAGE value="Fixing bug for enemy projectile" />
     <MESSAGE value="Player HP implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Player HP implementation" />
+    <MESSAGE value="Fixing bugs and making the moving background" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs and making the moving background" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

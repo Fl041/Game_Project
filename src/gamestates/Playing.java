@@ -29,7 +29,6 @@ public class Playing extends State implements Statemethods {
 	private int offsetCloudTop ;
 	private int offsetCloudBot;
 	private int offsetMountain;
-	private int indiceCloud;
 
 	public Playing(Game game) {
 		super(game);
@@ -199,7 +198,7 @@ public class Playing extends State implements Statemethods {
 				enemy.draw((Graphics2D) g);
 			}
 
-			Font f =new Font(null , Font.BOLD , 20);
+			Font f =new Font("Comic Sans MS" , Font.PLAIN , 20);
 			g.setFont(f);
 			g.drawString("Score : " + player.score,550,50);
 		}

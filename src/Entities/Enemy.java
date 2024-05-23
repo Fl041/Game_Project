@@ -28,11 +28,12 @@ public class Enemy extends Entity{
 
     public void update(int cameraX) {
             set(cameraX);
+            setAnimation();
+            updateAnimationTick();
+
             for(EnemyProjectile enemyProjectile : ennemiesprojectile) {
                 enemyProjectile.update((int) player.getXspeed());
-            }
-            updateAnimationTick();
-            setAnimation();
+        }
     }
 
     private void updateAnimationTick() {
@@ -52,6 +53,7 @@ public class Enemy extends Entity{
                 else {
                     aniIndex = 0;
                     attacking = false;
+
                 }
 
             }
@@ -62,13 +64,13 @@ public class Enemy extends Entity{
 
     private void setAnimation() {
         int startAni = enemyAction;
-
         if(isdead){
             enemyAction = DEATH;
         }
         else {
-            if(attacking)
+            if(attacking){
                 enemyAction = ATTACK;
+            }
             else
                 enemyAction = IDLE;
         }
@@ -84,11 +86,14 @@ public class Enemy extends Entity{
     public void set(int CameraX){
         x = startX + CameraX;
         getHitbox().x = (int) x;
-        if((x<550)&&(x>0)&&(attackTick>=100)){
-            attacking = true;
-            attackTick = 0 ;
+        if(!isdead){
+            if((x<550)&&(x>0)&&(attackTick>=100)){
+                attacking = true;
+                attackTick = 0 ;
+            }
+            attackTick++;
         }
-        attackTick++;
+
     }
 
     public void makeProjectile(int x , int y){

@@ -38,12 +38,12 @@ public class Player extends Entity{
     public void update() {
         if(isalive()){
             set();
-            updateAnimationTick();
             setAnimation();
+            updateAnimationTick();
         }
         else {
-            updateAnimationTick();
             setAnimation();
+            updateAnimationTick();
         }
     }
 
@@ -145,8 +145,8 @@ public class Player extends Entity{
         if(xspeed > 0 && xspeed < 0.75) xspeed = 0 ;
         if(xspeed < 0 && xspeed > -0.75) xspeed = 0 ;
 
-        if(xspeed > 4) xspeed = 4 ;
-        if(xspeed < -4) xspeed = -4 ;
+        if(xspeed > 3) xspeed = 3 ;
+        if(xspeed < -3) xspeed = -3 ;
 
         if(up){
             inAir = true;

@@ -1,18 +1,30 @@
 package gamestates;
 
+import Entities.Cloud;
 import Game.Game;
+import Utilz.ListUpdate;
+import Utilz.Load;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+
+import static Utilz.Constants.LoadConstants.BACKGROUND;
 
 public class Menu extends State implements Statemethods {
 
 	private Buttons[] buttons = new Buttons[2];
+	private BufferedImage background ;
 
 	public Menu(Game game) {
 		super(game);
 		loadButtons();
+		loadBackground();
+	}
+
+	public void loadBackground(){
+		background = Load.loadResources(BACKGROUND);
 	}
 
 	public void loadButtons(){
@@ -27,8 +39,10 @@ public class Menu extends State implements Statemethods {
 
 	@Override
 	public void draw(Graphics g) {
+		g.drawImage(background,0,0,750,750,null);
 		for (Buttons b : buttons)
 			b.draw(g);
+
 	}
 
 	@Override

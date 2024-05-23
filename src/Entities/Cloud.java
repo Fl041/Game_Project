@@ -12,10 +12,10 @@ public class Cloud extends Entity{
     private BufferedImage[] texture;
     private int[][] dimension;
     private int numtexture , type;
-    private final int[] posX = {155,446,587,20,337} ;
-    private final int[] posY = {108,134,124,163,179} ;
-    private final int[] widthC = {70,32,74,315,300} ;
-    private final int[] heightC = {28,17,29,92,112} ;
+    private final int[] posX = {155,446,576,20,337} ;
+    private final int[] posY = {108,134,123,163,179} ;
+    private final int[] widthC = {76,43,85,315,300} ;
+    private final int[] heightC = {36,25,39,92,112} ;
     Player player ;
 
     public Cloud(float x, float y, int width, int height,int numCloud, int type  , Player player) {
