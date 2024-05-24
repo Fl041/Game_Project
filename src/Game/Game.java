@@ -12,7 +12,7 @@ import java.awt.*;
 public class Game implements  Runnable{
 
     private Window window;
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
     private Thread gameThread;
     private final int FPS = 120;
     private final int UPS = 200;

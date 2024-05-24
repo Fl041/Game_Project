@@ -4,31 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="Fixing enemy bug and make better menu and death scene">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Cloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Cloud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/EnemyProjectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Mountain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Mountain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Ground.java" afterDir="false" />
+    <list default="true" id="8e08514e-1ea0-4a3c-b79c-22f2c731698b" name="Changes" comment="comment the code">
       <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilz/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilz/ListUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/ListUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilz/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/Load.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Buttons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilz/Buttons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/DeathScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/DeathScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Gamestate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Gamestate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Statemethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Statemethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/inputs/KeyboardInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/KeyboardInputs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/background2.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716473900749</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="comment the code">
+      <option name="closed" value="true" />
+      <created>1716563245990</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716563245990</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,7 +309,8 @@
     <MESSAGE value="Player HP implementation" />
     <MESSAGE value="Fixing bugs and making the moving background" />
     <MESSAGE value="Fixing enemy bug and make better menu and death scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing enemy bug and make better menu and death scene" />
+    <MESSAGE value="comment the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment the code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
