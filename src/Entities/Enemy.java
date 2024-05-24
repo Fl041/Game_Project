@@ -8,6 +8,9 @@ import static Utilz.Constants.EnnemyConstants.*;
 import static Utilz.Constants.LoadConstants.ENEMY;
 import static Utilz.Load.loadResources;
 
+/**
+ * class which allows you to create enemies
+ */
 public class Enemy extends Entity{
     private BufferedImage[][] animations;
     private int aniTick ,aniIndex,attackTick;
@@ -26,6 +29,11 @@ public class Enemy extends Entity{
         initHitbox(x,y,width,height);
     }
 
+    /**
+     * Function that allows you to update the enemy's position and animation
+     * and call the function who update the projectiles
+     * @param cameraX
+     */
     public void update(int cameraX) {
             set(cameraX);
             setAnimation();
@@ -36,6 +44,9 @@ public class Enemy extends Entity{
         }
     }
 
+    /**
+     * updates the animation
+     */
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -62,6 +73,9 @@ public class Enemy extends Entity{
 
     }
 
+    /**
+     * sets the animation
+     */
     private void setAnimation() {
         int startAni = enemyAction;
         if(isdead){
@@ -83,6 +97,10 @@ public class Enemy extends Entity{
         aniIndex = 0;
     }
 
+    /**
+     * update enemy position
+     * @param CameraX
+     */
     public void set(int CameraX){
         x = startX + CameraX;
         getHitbox().x = (int) x;
@@ -96,10 +114,19 @@ public class Enemy extends Entity{
 
     }
 
+    /**
+     * make the enemy's projectile
+     * @param x
+     * @param y
+     */
     public void makeProjectile(int x , int y){
         ennemiesprojectile.add(new EnemyProjectile(x, y+70,30,30));
     }
 
+    /**
+     * function to display the enemy
+     * @param gtd
+     */
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[enemyAction][aniIndex], (int) x, (int) y, width, height, null);
         for(EnemyProjectile enemyProjectile : ennemiesprojectile){
@@ -107,6 +134,9 @@ public class Enemy extends Entity{
         }
     }
 
+    /**
+     * function to recover all enemy animations
+     */
     private void loadAnimations() {
         BufferedImage img = loadResources(ENEMY);
         int[] height  = {6,63,143,199};

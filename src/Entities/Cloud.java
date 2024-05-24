@@ -2,10 +2,12 @@ package Entities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 import static Utilz.Constants.LoadConstants.CLOUD;
 import static Utilz.Load.loadResources;
 
+/**
+ * class which allows you to create clouds
+ */
 public class Cloud extends Entity{
 
     public int startX;
@@ -30,6 +32,10 @@ public class Cloud extends Entity{
         initHitbox(x,y,width,height);
     }
 
+    /**
+     * function to update its position
+     * @param CameraX
+     */
     public void set(int CameraX){
         if(type == 0 ){
             x -= (float) (player.getXspeed()/7);
@@ -40,6 +46,9 @@ public class Cloud extends Entity{
         }
     }
 
+    /**
+     * function to recover different types of clouds
+     */
     private void loadTexture() {
         BufferedImage img = loadResources(CLOUD);
         texture = new BufferedImage[5];
@@ -50,6 +59,10 @@ public class Cloud extends Entity{
 
     }
 
+    /**
+     * function to display the cloud
+     * @param gtd
+     */
     public void draw(Graphics2D gtd){
         gtd.drawImage( texture[numtexture], (int) x, (int) y,getWidth(),getHeight(),null);
 

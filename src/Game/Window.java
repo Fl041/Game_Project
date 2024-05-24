@@ -1,17 +1,20 @@
 package Game;
 
-import gamestates.Playing;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
+/**
+ * class which defines the game window
+ */
 public class Window {
     private JFrame jframe;
 
-    private Playing playing;
-
+    /**
+     *Constructor which allows you to add the panel to the window and define the position of the window
+     * @param gamePanel
+     */
     public Window(GamePanel gamePanel){
         jframe = new JFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +31,10 @@ public class Window {
 
             }
 
+            /**
+             * call a function that stops interaction with the window when it is no longer in the foreground
+             * @param e the event to be processed
+             */
             @Override
             public void windowLostFocus(WindowEvent e) {
                 gamePanel.getGame().windowFocusLost();

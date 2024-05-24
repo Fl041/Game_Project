@@ -1,12 +1,11 @@
 package Entities;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
+/**
+ * Abstract class which will be the basis of all entities present in the game
+ */
 public abstract class Entity {
     protected float x, y ;
     protected  int width , height ;
@@ -21,13 +20,23 @@ public abstract class Entity {
         this.height = height;
     }
 
+    /**
+     * show hitbox (use to debug collisions)
+     * @param g
+     */
     protected void drawHitbox(Graphics g) {
-        // For debugging the hitbox
         g.setColor(Color.PINK);
         g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
 
     }
 
+    /**
+     * initializes the entity's hitbox
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     protected void initHitbox(float x, float y, float width, float height) {
         hitbox = new Rectangle2D.Float(x, y, width-20, height);
     }

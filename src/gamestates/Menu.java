@@ -1,10 +1,8 @@
 package gamestates;
 
-import Entities.Cloud;
 import Game.Game;
-import Utilz.ListUpdate;
+import Utilz.Buttons;
 import Utilz.Load;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -12,6 +10,9 @@ import java.awt.image.BufferedImage;
 
 import static Utilz.Constants.LoadConstants.BACKGROUND;
 
+/**
+ * class which allows you to create the starting menu
+ */
 public class Menu extends State implements Statemethods {
 
 	private Buttons[] buttons = new Buttons[2];
@@ -23,23 +24,37 @@ public class Menu extends State implements Statemethods {
 		loadBackground();
 	}
 
+	/**
+	 * function to load the background
+	 */
 	public void loadBackground(){
 		background = Load.loadResources(BACKGROUND);
 	}
 
+	/**
+	 * function to load the buttons
+	 */
 	public void loadButtons(){
 		buttons[0] = new Buttons(200,250,300,81,0,0,Gamestate.MENU,Gamestate.PLAYING,this.game);
 		buttons[1] = new Buttons(200,400,300,81,7,0,Gamestate.MENU,Gamestate.QUIT,this.game);
 	}
+
+	/**
+	 * function to update the buttons
+	 */
 	@Override
 	public void update() {
 		for (Buttons b : buttons)
 			b.update();
 	}
 
+	/**
+	 * function to display all elements
+	 * @param g
+	 */
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(background,0,0,750,750,null);
+		g.drawImage(background,0,0,700,700,null);
 		for (Buttons b : buttons)
 			b.draw(g);
 

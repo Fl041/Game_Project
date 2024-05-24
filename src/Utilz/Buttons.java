@@ -1,17 +1,19 @@
-package gamestates;
+package Utilz;
 
 import Game.Game;
-import Utilz.Load;
+import gamestates.Gamestate;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import static Utilz.Constants.LoadConstants.BUTTON;
 
+/**
+ * Class which allows you to create the buttons
+ */
 public class Buttons {
     private int xPos, yPos, rowIndex , num;
-
     private int width, height ;
     private int xOffsetCenter = width/2;
-
     private Gamestate actualState,newState;
     private BufferedImage[][] imgs;
     private boolean mouseOver, mousePressed;
@@ -31,11 +33,17 @@ public class Buttons {
         loadImgs();
         initBounds();
     }
+
+    /**
+     * initializes the button area
+     */
     private void initBounds() {
         bounds = new Rectangle(xPos - xOffsetCenter, yPos, width, height);
-
     }
 
+    /**
+     * load the different button types
+     */
     private void loadImgs() {
         imgs = new BufferedImage[10][3];
         BufferedImage img = Load.loadResources(BUTTON);
@@ -54,6 +62,10 @@ public class Buttons {
         }
     }
 
+    /**
+     * display the button
+     * @param g
+     */
     public void draw(Graphics g) {
         g.drawImage(imgs[rowIndex][num], xPos - xOffsetCenter, yPos, width, height, null);
     }
@@ -86,6 +98,9 @@ public class Buttons {
         return bounds;
     }
 
+    /**
+     * change the state of the game based on the state specified when it was created
+     */
     public void applyGamestate() {
         if(newState == Gamestate.QUIT){
             System.exit(0);

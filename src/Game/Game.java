@@ -4,9 +4,11 @@ import gamestates.DeathScene;
 import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Playing;
-
 import java.awt.*;
 
+/**
+ Main class of the game which creates the window and manages its different states
+ */
 public class Game implements  Runnable{
 
     private Window window;
@@ -21,8 +23,9 @@ public class Game implements  Runnable{
     private boolean notRestart = true;
 
 
-
-
+    /**
+     * Class constructor, the different states as well as the fan and the panel are initialized and the game loop is launched
+     */
     public Game(){
         initClasses();
         gamePanel = new GamePanel(this);
@@ -32,6 +35,9 @@ public class Game implements  Runnable{
 
     }
 
+    /**
+     * function to initialize game states
+     */
     public void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
@@ -39,7 +45,9 @@ public class Game implements  Runnable{
     }
 
 
-
+    /**
+     * function that updates the game based on its state
+     */
     public void update(){
         switch (Gamestate.state) {
             case MENU:
@@ -58,6 +66,9 @@ public class Game implements  Runnable{
 
     }
 
+    /**
+     * function that displays the game according to its state
+     */
     public void render(Graphics g){
         switch (Gamestate.state) {
             case MENU:
@@ -73,10 +84,17 @@ public class Game implements  Runnable{
         }
     }
 
+    /**
+     * starts the game loop
+     */
     private void startGameloop(){
         gameThread = new Thread(this);
         gameThread.start();
     }
+
+    /**
+     * the game loop
+     */
     @Override
     public void run() {
         double timePerFrame = 1000000000.0 / FPS;
@@ -111,7 +129,10 @@ public class Game implements  Runnable{
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-                System.out.println("FPS: " + frames + " | UPS: " + updates);
+                /**
+                 * allows you to display fps and ups in real time on the console
+                 */
+                //System.out.println("FPS: " + frames + " | UPS: " + updates);
                 frames = 0;
                 updates = 0;
 
@@ -119,6 +140,9 @@ public class Game implements  Runnable{
         }
     }
 
+    /**
+     * function that stops interaction with the window when it is no longer in the foreground
+     */
     public void windowFocusLost() {
         if (Gamestate.state == Gamestate.PLAYING)
             playing.getPlayer().resetDirBooleans();

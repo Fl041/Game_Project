@@ -1,6 +1,12 @@
 package Utilz;
 
+/**
+ * class which groups the constants of the game
+ */
 public class Constants {
+    /**
+     * the constants of the enemy's animations
+     */
     public static class EnnemyConstants {
         public static final int IDLE = 0;
         public static final int ATTACK = 1;
@@ -9,19 +15,18 @@ public class Constants {
         public static final int Projectile = 4;
 
         public static int GetSpriteEnnemyAmount(int player_action) {
-            switch (player_action) {
-                case WALK:
-                    return 11;
-                case ATTACK , Projectile:
-                    return 7;
-                case DEATH:
-                    return 5;
-                case IDLE:
-                default:
-                    return 4;
-            }
+            return switch (player_action) {
+                case WALK -> 11;
+                case ATTACK, Projectile -> 7;
+                case DEATH -> 5;
+                default -> 4;
+            };
         }
     }
+
+    /**
+     * the constants of the player's animations
+     */
     public static class PlayerConstants {
         public static final int IDLE = 0;
         public static final int WALK = 1;
@@ -40,19 +45,18 @@ public class Constants {
 
 
         public static int GetSpritePlayerAmount(int player_action) {
-            switch (player_action) {
-                case WALK,RUN,PUSH,JUMP,DEATH,CRAFT,CLIMB,ATTACK_1,ATTACK_2,ATTACK_3:
-                    return 6;
-                case IDLE:
-                    return 4;
-                case HIT:
-                    return 3;
-                case FALL , JUMP_2:
-                default:
-                    return 1;
-            }
+            return switch (player_action) {
+                case WALK, RUN, PUSH, JUMP, DEATH, CRAFT, CLIMB, ATTACK_1, ATTACK_2, ATTACK_3 -> 6;
+                case IDLE -> 4;
+                case HIT -> 3;
+                default -> 1;
+            };
         }
     }
+
+    /**
+     * the path to recover resources
+     */
     public static class LoadConstants {
         public static final String PLAYER = "/resources/player-sprites.png";
         public static final String LIFE = "/resources/coeur-sprites.png";

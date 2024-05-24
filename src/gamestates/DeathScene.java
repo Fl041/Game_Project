@@ -1,9 +1,8 @@
 package gamestates;
 
-import Entities.Player;
 import Game.Game;
+import Utilz.Buttons;
 import Utilz.Load;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -11,6 +10,9 @@ import java.awt.image.BufferedImage;
 
 import static Utilz.Constants.LoadConstants.BACKGROUND;
 
+/**
+ * class which allows you to create the ending scene
+ */
 public class DeathScene extends State implements Statemethods {
     private int score,best_score ;
     private Buttons[] buttons = new Buttons[2];
@@ -21,13 +23,18 @@ public class DeathScene extends State implements Statemethods {
     }
 
 
-
+    /**
+     * function to create the page elements (button and background)
+     */
     public void initScene(){
         background = Load.loadResources(BACKGROUND);
         buttons[0] = new Buttons(200,250,300,81,9,0,Gamestate.DEATH,Gamestate.PLAYING,this.game);
         buttons[1] = new Buttons(200,400,300,81,7,0,Gamestate.DEATH,Gamestate.MENU,this.game);
     }
 
+    /**
+     * function to update scores and buttons
+     */
     @Override
     public void update() {
         best_score = game.getBest_score();
@@ -38,9 +45,13 @@ public class DeathScene extends State implements Statemethods {
             b.update();
     }
 
+    /**
+     * function to display all elements
+     * @param g
+     */
     @Override
     public void draw(Graphics g) {
-        g.drawImage(background,0,0,750,750,null);
+        g.drawImage(background,0,0,700,700,null);
         for (Buttons b : buttons)
             b.draw(g);
         Font f =new Font("Comic Sans MS" , Font.PLAIN , 20);

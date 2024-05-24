@@ -4,11 +4,13 @@ import gamestates.Gamestate;
 import gamestates.Playing;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 import static Utilz.Constants.LoadConstants.*;
 import static Utilz.Constants.PlayerConstants.*;
 import static Utilz.Load.loadResources;
 
+/**
+ * Class which allows you to create the player
+ */
 public class Player extends Entity{
 
     private BufferedImage[][] animations;
@@ -35,6 +37,9 @@ public class Player extends Entity{
         initHitbox(x,y,width,height);
     }
 
+    /**
+     * Function that allows you to update the player's position and animation
+     */
     public void update() {
         if(isalive()){
             set();
@@ -47,11 +52,18 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * function to display the player and his life
+     * @param gtd
+     */
     public void draw(Graphics2D gtd){
         gtd.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, width, height, null);
         gtd.drawImage(animationhealth[healthIndex], (int) x, (int) y-36, 36, 30, null);
     }
 
+    /**
+     * function to recover all player animations
+     */
     private void loadAnimations() {
         int[] height  = {0,70,146,212,282,354,440,510,581,652,724,794};
         BufferedImage img = loadResources(PLAYER);
@@ -65,6 +77,9 @@ public class Player extends Entity{
         animations[13][0] = animations[4][4];
     }
 
+    /**
+     * function to recover all heart animations for the life of the player
+     */
     private void loadHealthAnimation(){
         //y = 23 , x = 10 , width = 72  dif = 15 height = 63
         BufferedImage img = loadResources(LIFE);
@@ -75,6 +90,9 @@ public class Player extends Entity{
             }
     }
 
+    /**
+     * updates animation
+     */
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -97,6 +115,9 @@ public class Player extends Entity{
 
     }
 
+    /**
+     * sets animation
+     */
     private void setAnimation() {
         int startAni = playerAction;
         if(isdead){
@@ -122,11 +143,17 @@ public class Player extends Entity{
             resetAniTick();
     }
 
+    /**
+     * reset the animation
+     */
     private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
     }
 
+    /**
+     * update the player position and handle all collisions
+     */
     public void set(){
         moving = false;
         if(left && right || !left && !right) xspeed *= 0.8 ;
@@ -151,7 +178,7 @@ public class Player extends Entity{
         if(up){
             inAir = true;
             hitbox.y ++ ;
-            for(Wall wall: game.getWalls()){
+            for(Ground wall: game.getWalls()){
                 if(wall.hitbox.intersects(hitbox)){
                     yspeed = -7.5 ;
                 }
@@ -162,7 +189,7 @@ public class Player extends Entity{
         yspeed += 0.23;
         //Horizontal Collision
         hitbox.x += xspeed;
-        for(Wall wall : game.getWalls()){
+        for(Ground wall : game.getWalls()){
             if(hitbox.intersects(wall.getHitbox())){
                 hitbox.x -= xspeed;
                 while ( !wall.getHitbox().intersects(hitbox)){
@@ -177,7 +204,7 @@ public class Player extends Entity{
         }
         //Vertical Collision
         hitbox.y += yspeed;
-        for(Wall wall : game.getWalls()){
+        for(Ground wall : game.getWalls()){
             if(hitbox.intersects(wall.getHitbox())){
                 hitbox.y -= yspeed;
                 while ( !wall.getHitbox().intersects(hitbox)){

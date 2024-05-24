@@ -2,6 +2,7 @@ package gamestates;
 
 import Entities.*;
 import Game.Game;
+import Utilz.Buttons;
 import Utilz.ListUpdate;
 import Utilz.Load;
 
@@ -10,22 +11,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-
 import static Utilz.Constants.LoadConstants.BACKGROUND;
-import static Utilz.Constants.LoadConstants.MOUNTAIN;
 
+/**
+ * class which allows you to create the game
+ */
 public class Playing extends State implements Statemethods {
 	private Player player;
 	private Buttons buttons;
 	private BufferedImage background;
-	private ListUpdate<Wall> walls = new ListUpdate<>(400);
+	private ListUpdate<Ground> walls = new ListUpdate<>(400);
 	private ListUpdate<Enemy> ennemies = new ListUpdate<>(2);
 	private ListUpdate<Cloud> cloudsTop = new ListUpdate<>(9);
 	private ListUpdate<Cloud> cloudsBot = new ListUpdate<>(5);
 	private ListUpdate<Mountain> mountains = new ListUpdate<>(5);
 	public int CameraX;
 	private int offset;
-	private int indiceWall;
+	private int platformeindices;
 	private int offsetCloudTop ;
 	private int offsetCloudBot;
 	private int offsetMountain;
@@ -37,6 +39,9 @@ public class Playing extends State implements Statemethods {
 	}
 
 
+	/**
+	 * function that allows you to create the player and the button and initialize the game
+	 */
 	private void initClasses() {
 		player = new Player(400,300 , 72,58,this);
 		buttons = new Buttons(50,23,100,27,7,0,Gamestate.PLAYING,Gamestate.MENU,this.game);
@@ -44,10 +49,16 @@ public class Playing extends State implements Statemethods {
 
 	}
 
+	/**
+	 * function that allows you to initialize the background
+	 */
 	private void loadBackground(){
 		background = Load.loadResources(BACKGROUND);
 	}
 
+	/**
+	 * function that allows you to initialize the game
+	 */
 	public void reset(){
 		player.setWidth(72);
 		player.setHeight(58);
@@ -64,12 +75,16 @@ public class Playing extends State implements Statemethods {
 		offsetCloudTop = -150;
 		offsetCloudBot = -150;
 		offsetMountain = -150;
-		indiceWall = 1 ;
-		makeWall(offset,indiceWall);
+		platformeindices = 1 ;
+		makePlatforms(offset, platformeindices);
 		makeCloud(offsetCloudTop,0);
 		makeCloud(offsetCloudBot,1);
 		makeMountain(offset);
 	}
+
+	/**
+	 * create the player's death scene
+	 */
 	public void deathScene(){
 		player.setWidth(144);
 		player.setHeight(116);
@@ -80,43 +95,54 @@ public class Playing extends State implements Statemethods {
 		player.setHealthIndex(4);
 	}
 
-	public  void makeWall(int offset,int indiceWall){
+	/**
+	 * create the game platforms
+	 * @param offset
+	 * @param indiceWall
+	 */
+	public  void makePlatforms(int offset, int indiceWall){
 		Random rand = new Random();
 		int index = rand.nextInt(indiceWall);
 		if(index == 0 ){
 			make_straight_line(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 		else if(index == 1 ){
 			make_platform2(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 		else if(index == 2 ){
 			make_platform1(offset);
-			setIndiceWall(8);
+			setPlatformeindices(8);
 		}
 		else if(index == 3 ){
 			make_platform3(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 		else if(index == 4 ){
 			make_ascension(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 		else if(index == 5 ){
 			make_straight_line2(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 		else if(index == 6 ){
 			make_hollow(offset);
-			setIndiceWall(8);
+			setPlatformeindices(8);
 		}
 		else {
 			make_descent(offset);
-			setIndiceWall(6);
+			setPlatformeindices(6);
 		}
 
 	}
+
+	/**
+	 * create the game clouds
+	 * @param offset
+	 * @param indiceCloud
+	 */
 	public void makeCloud(int offset, int indiceCloud){
 		Random rand = new Random();
 		if(indiceCloud == 0){
@@ -128,18 +154,27 @@ public class Playing extends State implements Statemethods {
 			cloudsBot.add(new Cloud(offset + 425, 350, 10,10, rand.nextInt(2) + 3,0,player));
 		}
 	}
+
+	/**
+	 * create the mountains
+	 * @param offset
+	 */
 	public void makeMountain(int offset){
 		Random rand = new Random();
-		mountains.add(new Mountain(offset ,250,750,500, rand.nextInt(1)+ 2, player));
-		mountains.add(new Mountain(offset +750 ,250,750,500, rand.nextInt(1)+2, player));
+		mountains.add(new Mountain(offset ,250,700,500, rand.nextInt(1)+ 2, player));
+		mountains.add(new Mountain(offset +700 ,250,700,500, rand.nextInt(1)+2, player));
 	}
+
+	/**
+	 * call the update of all elements of the game
+	 */
 	@Override
 	public void update() {
 
 		if(player.isalive()){
 			if(walls.getLast().getX() <800){
 				offset += 800 ;
-				makeWall(offset,indiceWall);
+				makePlatforms(offset, platformeindices);
 			}
 			if(mountains.getLast().getX() < 800){
 				offsetMountain += 800;
@@ -164,7 +199,7 @@ public class Playing extends State implements Statemethods {
 			for(Cloud cloud : cloudsBot){
 				cloud.set(CameraX);
 			}
-			for (Wall wall : walls) {
+			for (Ground wall : walls) {
 				wall.set(CameraX);
 			}
 			for(Enemy enemy : ennemies){
@@ -176,6 +211,10 @@ public class Playing extends State implements Statemethods {
 		}
 	}
 
+	/**
+	 * display all elements of the game
+	 * @param g
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(background,0,0,700,700,null);
@@ -191,7 +230,7 @@ public class Playing extends State implements Statemethods {
 			}
 			player.draw((Graphics2D) g);
 			buttons.draw(g);
-			for(Wall wall : walls){
+			for(Ground wall : walls){
 				wall.draw((Graphics2D) g);
 			}
 			for(Enemy enemy : ennemies){
@@ -291,136 +330,141 @@ public class Playing extends State implements Statemethods {
 	public void setGameState(Gamestate state){
 		Gamestate.state = state;
 	}
-	public ListUpdate<Wall> getWalls() {
+	public ListUpdate<Ground> getWalls() {
 		return walls;
 	}
 	public ListUpdate<Enemy> getEnnemy() {
 		return ennemies;
 	}
 
-	public void setIndiceWall(int indiceWall) {
-		this.indiceWall = indiceWall;
+	public void setPlatformeindices(int platformeindices) {
+		this.platformeindices = platformeindices;
 	}
 
+	/**
+	 *
+	 all the functions called in makePlatforms which allow you to create the different types of platforms
+	 * @param offset
+	 */
 	public void make_straight_line(int offset){
 		for(int i = 0 ; i<14 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
-			walls.add(new Wall(offset + i*50,550,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,550,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,650,1));
 		}
 		ennemies.add(new Enemy(offset+600 , 400,100,100,player));
 	}
 	public void make_straight_line2(int offset) {
 		for(int i = 0 ; i < 4 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
-			walls.add(new Wall(offset + i*50,550,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,550,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,650,1));
 		}
 		for(int i = 6 ; i < 10 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
-			walls.add(new Wall(offset + i*50,550,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,550,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,650,1));
 		}
 		for(int i = 12 ; i <16 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
-			walls.add(new Wall(offset + i*50,550,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,550,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,650,1));
 		}
 	}
 	public void make_platform1(int offset){
 		for(int i = 0 ; i < 4 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,500,0));
 		}
 		for(int i = 6 ; i < 10 ; i++){
-			walls.add(new Wall(offset + i*50,450,0));
+			walls.add(new Ground(offset + i*50,450,0));
 		}
 		for(int i = 12 ; i < 16 ; i++){
 
-			walls.add(new Wall(offset + i*50,400,0));
+			walls.add(new Ground(offset + i*50,400,0));
 		}
 	}
 	public void make_platform2(int offset){
 		for(int i = 0 ; i < 4 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,500,0));
 		}
 		for(int i = 6 ; i < 10 ; i++){
-			walls.add(new Wall(offset + i*50,450,0));
+			walls.add(new Ground(offset + i*50,450,0));
 		}
 		for(int i = 12 ; i < 16 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,500,0));
 		}
 	}
 	public void make_platform3(int offset){
 		for(int i = 0 ; i < 4 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,500,0));
 		}
 		for(int i = 6 ; i < 10 ; i++){
-			walls.add(new Wall(offset + i*50,550,0));
+			walls.add(new Ground(offset + i*50,550,0));
 		}
 		for(int i = 12 ; i < 16 ; i++){
-			walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,500,0));
 		}
 	}
 	public void make_ascension(int offset){
 		for(int i = 0 ; i < 12 ; i++){
-			walls.add(new Wall(offset + i*50,650,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,550,1));
-			if(i<4) walls.add(new Wall(offset + i*50,500,0));
-			else walls.add(new Wall(offset + i*50,500,1));
+			walls.add(new Ground(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,550,1));
+			if(i<4) walls.add(new Ground(offset + i*50,500,0));
+			else walls.add(new Ground(offset + i*50,500,1));
 
 		}
 		for(int i = 4 ; i < 12 ; i++){
-			if(i<8)walls.add(new Wall(offset + i*50,450,0));
-			else walls.add(new Wall(offset + i*50,450,1));
+			if(i<8)walls.add(new Ground(offset + i*50,450,0));
+			else walls.add(new Ground(offset + i*50,450,1));
 		}
 		for(int i = 8 ; i < 12 ; i++){
-			walls.add(new Wall(offset + i*50,400,0));
+			walls.add(new Ground(offset + i*50,400,0));
 		}
 	}
 	public void make_descent(int offset){
 		for(int i = 0 ; i < 12 ; i++){
-			walls.add(new Wall(offset + i*50,650,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,550,1));
-			walls.add(new Wall(offset + i*50,500,0));
-			if(i>=8) walls.add(new Wall(offset + i*50,500,0));
-			else walls.add(new Wall(offset + i*50,500,1));
+			walls.add(new Ground(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,550,1));
+			walls.add(new Ground(offset + i*50,500,0));
+			if(i>=8) walls.add(new Ground(offset + i*50,500,0));
+			else walls.add(new Ground(offset + i*50,500,1));
 		}
 		for(int i = 0 ; i < 8 ; i++){
-			if(i>=4)walls.add(new Wall(offset + i*50,450,0));
-			else walls.add(new Wall(offset + i*50,450,1));
+			if(i>=4)walls.add(new Ground(offset + i*50,450,0));
+			else walls.add(new Ground(offset + i*50,450,1));
 		}
 		for(int i = 0; i < 4 ; i++){
-			walls.add(new Wall(offset + i*50,400,0));
+			walls.add(new Ground(offset + i*50,400,0));
 		}
 	}
 	public void make_hollow(int offset){
 		for(int i = 0 ; i < 16 ; i++){
-			walls.add(new Wall(offset + i*50,650,1));
-			walls.add(new Wall(offset + i*50,600,1));
-			walls.add(new Wall(offset + i*50,550,1));
-			if(i<4 || i >11d)walls.add(new Wall(offset + i*50,500,1));
-			else walls.add(new Wall(offset + i*50,500,0));
+			walls.add(new Ground(offset + i*50,650,1));
+			walls.add(new Ground(offset + i*50,600,1));
+			walls.add(new Ground(offset + i*50,550,1));
+			if(i<4 || i >11d)walls.add(new Ground(offset + i*50,500,1));
+			else walls.add(new Ground(offset + i*50,500,0));
 
 		}
 		for(int i = 0 ; i < 4 ; i++){
-			if(i<2)walls.add(new Wall(offset + i*50,450,1));
-			else walls.add(new Wall(offset + i*50,450,0));
+			if(i<2)walls.add(new Ground(offset + i*50,450,1));
+			else walls.add(new Ground(offset + i*50,450,0));
 		}
 		for(int i = 12 ; i < 16 ; i++){
-			if(i>13)walls.add(new Wall(offset + i*50,450,1));
-			else walls.add(new Wall(offset + i*50,450,0));
+			if(i>13)walls.add(new Ground(offset + i*50,450,1));
+			else walls.add(new Ground(offset + i*50,450,0));
 		}
 		for(int i = 0 ; i < 2 ; i++){
-			walls.add(new Wall(offset + i*50,400,0));
+			walls.add(new Ground(offset + i*50,400,0));
 		}
 		for(int i = 14 ; i < 16 ; i++){
-			walls.add(new Wall(offset + i*50,400,0));
+			walls.add(new Ground(offset + i*50,400,0));
 		}
 	}
 
